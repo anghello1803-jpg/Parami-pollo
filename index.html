@@ -2,847 +2,1077 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#030303">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
 
 <title>Para mi Pollo 💛</title>
 
 <style>
+/* =========================================================
+   BASE
+========================================================= */
+
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
 }
 
-html,body{
+html,
+body{
     width:100%;
     height:100%;
     overflow:hidden;
     background:#000;
     color:white;
-    font-family:Arial,Helvetica,sans-serif;
-    user-select:none;
+    font-family:Georgia,"Times New Roman",serif;
 }
 
 button{
-    font:inherit;
+    font-family:Arial,sans-serif;
 }
 
-/* =========================
-   ESCENA
-========================= */
-
-#scene{
-    position:fixed;
-    inset:0;
-    overflow:hidden;
-    background:
-        radial-gradient(circle at 50% 60%,#2d2000 0%,#0b0700 22%,#020202 58%,#000 100%);
-}
-
-/* =========================
-   ESTRELLAS
-========================= */
-
-#stars{
-    position:absolute;
-    inset:0;
-    overflow:hidden;
-    opacity:0;
-    transition:opacity 1.5s ease;
-}
-
-#stars.show{
-    opacity:1;
-}
-
-.star{
-    position:absolute;
-    width:2px;
-    height:2px;
-    border-radius:50%;
-    background:#fff8c5;
-    box-shadow:0 0 5px #ffe66d;
-    animation:twinkle 2.5s infinite alternate;
-}
-
-@keyframes twinkle{
-    from{opacity:.2}
-    to{opacity:1}
-}
-
-/* =========================
+/* =========================================================
    PORTADA
-========================= */
+========================================================= */
 
-#intro{
+#cover{
     position:fixed;
     inset:0;
-    z-index:100;
+    z-index:1000;
+
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:25px;
-    text-align:center;
 
     background:
-      radial-gradient(circle at 50% 48%,
-      rgba(255,191,0,.17),
-      transparent 32%),
-      #030303;
+        radial-gradient(
+            circle at 50% 46%,
+            rgba(255,190,0,.16),
+            rgba(50,25,0,.05) 30%,
+            #000 68%
+        );
 
     transition:
         opacity .8s ease,
         transform .8s ease,
-        visibility .8s;
+        filter .8s ease;
 }
 
-#intro.hide{
+#cover.hide{
     opacity:0;
     transform:scale(1.12);
-    visibility:hidden;
+    filter:blur(8px);
     pointer-events:none;
 }
 
-.intro-box{
-    max-width:1000px;
-    width:100%;
+.cover-content{
+    width:min(900px,92%);
+    text-align:center;
+    position:relative;
+    z-index:3;
 }
 
-.sunflower-top{
-    font-size:72px;
-    filter:drop-shadow(0 0 22px #ffbd00);
-    animation:float 3s ease-in-out infinite;
+.sunflower{
+    font-size:70px;
+    display:block;
+    margin-bottom:15px;
+
+    filter:
+        drop-shadow(0 0 10px #ffca18)
+        drop-shadow(0 0 30px #ff9d00);
+
+    animation:flowerFloat 3s ease-in-out infinite;
 }
 
-@keyframes float{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-8px)}
+@keyframes flowerFloat{
+    0%,100%{transform:translateY(0) rotate(-3deg);}
+    50%{transform:translateY(-10px) rotate(3deg);}
 }
 
-h1{
-    margin-top:10px;
-    font-family:Georgia,serif;
-    font-size:clamp(48px,7vw,95px);
-    color:#ffe164;
+.cover-content h1{
+    font-size:clamp(52px,8vw,100px);
+    color:#ffe066;
+    line-height:1;
+
     text-shadow:
-        0 0 12px #e7a900,
-        0 0 35px #9a6400;
+        0 0 8px #ffcf32,
+        0 0 22px rgba(255,181,0,.85),
+        0 0 50px rgba(255,140,0,.45);
 }
 
-.subtitle{
-    margin-top:25px;
-    font-family:Georgia,serif;
+.cover-content .heart{
+    display:inline-block;
+    animation:heartBeat 1.6s ease-in-out infinite;
+}
+
+@keyframes heartBeat{
+    0%,100%{transform:scale(1);}
+    15%{transform:scale(1.13);}
+    30%{transform:scale(1);}
+    45%{transform:scale(1.08);}
+}
+
+.intro{
+    margin-top:32px;
+    color:#fff3d2;
+    font-size:clamp(18px,2.1vw,26px);
+    line-height:1.55;
     font-weight:bold;
-    font-size:clamp(18px,2vw,26px);
-    line-height:1.5;
-    color:#fff5d9;
 }
 
 .quote{
-    margin:28px 0;
-    font-family:Georgia,serif;
+    margin-top:25px;
+    color:#ffd44d;
+    font-size:clamp(16px,1.8vw,21px);
     font-style:italic;
-    color:#ffd34d;
-    font-size:clamp(17px,1.7vw,22px);
 }
 
-#enter{
-    border:1px solid #fff5a5;
+#enterBtn{
+    margin-top:32px;
+    border:1px solid #fff0a0;
     border-radius:999px;
     padding:18px 38px;
-    cursor:pointer;
-    font-weight:900;
-    font-size:clamp(18px,2vw,23px);
-    color:#201500;
 
-    background:
-        linear-gradient(180deg,#ffe96d,#f1b900);
+    color:#241500;
+    background:linear-gradient(
+        180deg,
+        #ffe774,
+        #ffc400
+    );
+
+    font-size:20px;
+    font-weight:900;
+    cursor:pointer;
 
     box-shadow:
-        0 0 20px rgba(255,195,0,.5),
-        inset 0 1px rgba(255,255,255,.8);
+        0 0 15px rgba(255,211,42,.45),
+        0 0 45px rgba(255,177,0,.25);
 
-    transition:.2s;
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease;
 }
 
-#enter:hover{
+#enterBtn:hover{
     transform:scale(1.06);
     box-shadow:
-        0 0 35px rgba(255,195,0,.8);
+        0 0 20px rgba(255,225,80,.8),
+        0 0 60px rgba(255,177,0,.4);
 }
 
-#enter:active{
-    transform:scale(.96);
+#enterBtn:active{
+    transform:scale(.97);
 }
 
 .small{
-    margin-top:17px;
-    color:#b99b48;
+    margin-top:18px;
+    color:#bba76c;
+    font-family:Arial,sans-serif;
     font-size:14px;
 }
 
-/* =========================
+/* =========================================================
    BIG BANG
-========================= */
+========================================================= */
 
-#bang{
+#bigbang{
     position:fixed;
+    inset:0;
+    z-index:900;
+
+    display:none;
+    pointer-events:none;
+    overflow:hidden;
+    background:#000;
+}
+
+#bigbang.active{
+    display:block;
+}
+
+#flash{
+    position:absolute;
     left:50%;
     top:50%;
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    transform:translate(-50%,-50%) scale(0);
-    z-index:80;
-    pointer-events:none;
 
-    background:#fff;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+
+    transform:translate(-50%,-50%);
+
+    background:white;
 
     box-shadow:
-        0 0 20px #fff,
-        0 0 60px #fff5a0,
-        0 0 130px #ffd000,
-        0 0 260px #ff9700;
+        0 0 20px white,
+        0 0 60px #fff6ad,
+        0 0 120px #ffc400,
+        0 0 220px #ff7b00;
+
+    animation:explode 2.2s ease-out forwards;
 }
 
-#bang.go{
-    animation:bigbang 2.2s ease-out forwards;
-}
+@keyframes explode{
 
-@keyframes bigbang{
     0%{
-        transform:translate(-50%,-50%) scale(0);
+        width:2px;
+        height:2px;
         opacity:1;
-    }
-
-    15%{
-        transform:translate(-50%,-50%) scale(7);
-    }
-
-    45%{
-        transform:translate(-50%,-50%) scale(55);
-        opacity:1;
-    }
-
-    100%{
-        transform:translate(-50%,-50%) scale(180);
-        opacity:0;
-    }
-}
-
-#bangText{
-    position:fixed;
-    left:50%;
-    top:50%;
-    z-index:90;
-    transform:translate(-50%,-50%) scale(.2);
-    opacity:0;
-    pointer-events:none;
-
-    font-family:Georgia,serif;
-    font-weight:bold;
-    text-align:center;
-    color:#fff7c5;
-
-    font-size:clamp(30px,5vw,75px);
-
-    text-shadow:
-        0 0 15px #fff,
-        0 0 35px #ffd000;
-}
-
-#bangText.go{
-    animation:bangWords 2.3s ease-out;
-}
-
-@keyframes bangWords{
-    0%{
-        opacity:0;
-        transform:translate(-50%,-50%) scale(.15);
     }
 
     25%{
+        width:80px;
+        height:80px;
         opacity:1;
-        transform:translate(-50%,-50%) scale(1);
     }
 
-    70%{
+    55%{
+        width:450px;
+        height:450px;
         opacity:1;
+    }
+
+    80%{
+        width:130vw;
+        height:130vw;
+        opacity:.9;
     }
 
     100%{
+        width:180vw;
+        height:180vw;
         opacity:0;
-        transform:translate(-50%,-50%) scale(1.5);
     }
 }
-
-/* =========================
-   UNIVERSO
-========================= */
-
-#universe{
-    position:absolute;
-    inset:0;
-    opacity:0;
-    pointer-events:none;
-    transition:opacity 1.5s ease;
-    perspective:900px;
-}
-
-#universe.show{
-    opacity:1;
-    pointer-events:auto;
-}
-
-/* piso mágico */
-
-#floor{
-    position:absolute;
-    left:-15%;
-    width:130%;
-    height:58%;
-    bottom:-15%;
-
-    transform:
-        perspective(650px)
-        rotateX(58deg);
-
-    transform-origin:center bottom;
-
-    background:
-      radial-gradient(circle,
-      rgba(255,235,130,.95) 0 1px,
-      transparent 2px);
-
-    background-size:28px 28px;
-
-    filter:
-        drop-shadow(0 0 4px #ffd400);
-
-    opacity:.8;
-}
-
-/* resplandor del horizonte */
-
-#horizon{
-    position:absolute;
-    left:0;
-    right:0;
-    bottom:22%;
-    height:22%;
-
-    background:
-        linear-gradient(
-        transparent,
-        rgba(255,193,0,.14),
-        rgba(255,174,0,.04),
-        transparent
-        );
-
-    filter:blur(20px);
-}
-
-/* =========================
-   ESFERA CENTRAL
-========================= */
-
-#planetWrap{
-    position:absolute;
-    left:50%;
-    top:42%;
-    transform:translate(-50%,-50%);
-}
-
-#planet{
-    width:clamp(180px,23vw,350px);
-    aspect-ratio:1;
-    border-radius:50%;
-    position:relative;
-
-    background:
-        radial-gradient(circle at 35% 25%,
-        #fffbd2 0%,
-        #ffd34d 7%,
-        #b76e00 30%,
-        #503000 58%,
-        #100800 78%,
-        #000 100%);
-
-    box-shadow:
-        inset -40px -45px 80px #000,
-        inset 15px 15px 35px rgba(255,255,190,.5),
-        0 0 20px #ffd000,
-        0 0 60px rgba(255,188,0,.65),
-        0 0 130px rgba(255,157,0,.3);
-
-    animation:planetFloat 5s ease-in-out infinite;
-}
-
-@keyframes planetFloat{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-12px)}
-}
-
-/* flores dentro de esfera */
-
-.planetFlower{
-    position:absolute;
-    font-size:clamp(24px,3vw,44px);
-    filter:drop-shadow(0 0 8px #ffc400);
-}
-
-.pf1{left:15%;top:24%}
-.pf2{right:13%;top:35%}
-.pf3{left:36%;bottom:15%}
-.pf4{right:30%;top:12%}
-.pf5{left:8%;bottom:30%}
-
-/* anillos */
 
 .ring{
     position:absolute;
     left:50%;
     top:50%;
-    border:4px solid #ffd329;
+
+    width:20px;
+    height:20px;
+
+    border:4px solid #ffe057;
     border-radius:50%;
-    pointer-events:none;
+
+    transform:translate(-50%,-50%);
 
     box-shadow:
-        0 0 9px #ffd000,
-        0 0 20px rgba(255,190,0,.8);
+        0 0 20px #ffe057,
+        inset 0 0 20px #ffe057;
+
+    animation:ringExplosion 2s ease-out forwards;
 }
 
-.r1{
-    width:145%;
-    height:32%;
-    transform:
-        translate(-50%,-50%)
-        rotate(-8deg);
-    animation:ringGlow 2s infinite alternate;
+.ring.r2{
+    animation-delay:.18s;
+    border-color:#ff9d00;
 }
 
-.r2{
-    width:132%;
-    height:24%;
-    transform:
-        translate(-50%,-50%)
-        rotate(13deg);
-    opacity:.7;
+.ring.r3{
+    animation-delay:.35s;
+    border-width:2px;
 }
 
-@keyframes ringGlow{
-    from{filter:brightness(.8)}
-    to{filter:brightness(1.7)}
+@keyframes ringExplosion{
+    from{
+        width:20px;
+        height:20px;
+        opacity:1;
+    }
+
+    to{
+        width:150vmax;
+        height:150vmax;
+        opacity:0;
+    }
 }
 
-/* =========================
-   CAMPO DE FLORES
-========================= */
+/* partículas Big Bang */
 
-#flowers{
+.bang-particle{
     position:absolute;
-    inset:0;
-    pointer-events:none;
+    left:50%;
+    top:50%;
+
+    width:5px;
+    height:5px;
+
+    border-radius:50%;
+    background:#fff5b0;
+
+    box-shadow:0 0 12px #ffc400;
+
+    animation:particleBang 1.8s ease-out forwards;
 }
 
-.flower{
-    position:absolute;
-    transform:translate(-50%,-50%);
-    filter:drop-shadow(0 0 10px rgba(255,194,0,.7));
-    animation:sway 4s ease-in-out infinite;
+@keyframes particleBang{
+    from{
+        transform:
+            translate(-50%,-50%)
+            translate(0,0)
+            scale(1);
+        opacity:1;
+    }
+
+    to{
+        transform:
+            translate(-50%,-50%)
+            translate(var(--x),var(--y))
+            scale(.2);
+        opacity:0;
+    }
 }
 
-@keyframes sway{
-    0%,100%{transform:translate(-50%,-50%) rotate(-3deg)}
-    50%{transform:translate(-50%,-50%) rotate(3deg)}
-}
+/* =========================================================
+   UNIVERSO
+========================================================= */
 
-/* =========================
-   FRASES
-========================= */
-
-.message{
-    position:absolute;
-    transform:translate(-50%,-50%);
-    color:#fff8d6;
-    font-family:Georgia,serif;
-    font-weight:bold;
-    text-align:center;
-    text-shadow:
-        0 0 5px #000,
-        0 0 13px #d69d00;
-    white-space:nowrap;
-    opacity:.92;
-}
-
-/* =========================
-   GATITOS
-========================= */
-
-.cat{
-    position:absolute;
-    font-size:clamp(36px,5vw,72px);
-    filter:drop-shadow(0 0 15px #ffcf43);
-    animation:catBounce 3s ease-in-out infinite;
-}
-
-@keyframes catBounce{
-    0%,100%{transform:translateY(0) rotate(-4deg)}
-    50%{transform:translateY(-12px) rotate(4deg)}
-}
-
-/* =========================
-   PROFESIONES
-========================= */
-
-#career{
-    position:absolute;
-    right:5%;
-    top:18%;
-
-    width:min(310px,36vw);
-
-    padding:20px;
-
-    border:1px solid rgba(255,211,70,.65);
-    border-radius:25px;
-
-    background:
-        rgba(20,13,0,.72);
-
-    backdrop-filter:blur(8px);
-
-    box-shadow:
-        0 0 30px rgba(255,190,0,.25);
-
-    opacity:0;
-    transform:translateY(30px);
-    transition:1s ease;
-}
-
-#career.show{
-    opacity:1;
-    transform:translateY(0);
-}
-
-.careerIcons{
-    font-size:45px;
-    margin-bottom:10px;
-}
-
-#career h2{
-    color:#ffd84e;
-    font-family:Georgia,serif;
-    margin-bottom:8px;
-}
-
-#career p{
-    color:#fff3ce;
-    line-height:1.45;
-}
-
-/* =========================
-   ENAMORADO
-========================= */
-
-#lover{
-    position:absolute;
-    left:7%;
-    top:17%;
-
-    opacity:0;
-    transform:translateY(25px);
-    transition:1.2s ease;
-
-    text-align:center;
-}
-
-#lover.show{
-    opacity:1;
-    transform:translateY(0);
-}
-
-.loverIcon{
-    font-size:70px;
-    animation:loverBeat 1.4s infinite;
-}
-
-@keyframes loverBeat{
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.08)}
-}
-
-#lover p{
-    margin-top:8px;
-    font-family:Georgia,serif;
-    color:#ffe99a;
-    font-weight:bold;
-}
-
-/* =========================
-   HUD
-========================= */
-
-#hud{
+#universe{
     position:fixed;
     inset:0;
-    z-index:50;
-    pointer-events:none;
-    opacity:0;
-    transition:1s;
+    display:none;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #1c1302 0%,
+            #090701 38%,
+            #010101 75%
+        );
 }
 
-#hud.on{
-    opacity:1;
+#universe.show{
+    display:block;
+    animation:universeAppear 1.5s ease both;
 }
+
+@keyframes universeAppear{
+    from{
+        opacity:0;
+        filter:brightness(3);
+    }
+    to{
+        opacity:1;
+        filter:brightness(1);
+    }
+}
+
+/* =========================================================
+   ESTRELLAS
+========================================================= */
+
+#stars{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.star{
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
+    border-radius:50%;
+    background:white;
+
+    opacity:.7;
+
+    animation:twinkle var(--time) ease-in-out infinite alternate;
+}
+
+@keyframes twinkle{
+    from{
+        opacity:.15;
+        transform:scale(.7);
+    }
+    to{
+        opacity:1;
+        transform:scale(1.8);
+        box-shadow:0 0 8px white;
+    }
+}
+
+/* =========================================================
+   POLVO DORADO / ALFOMBRA
+========================================================= */
+
+#goldFloor{
+    position:absolute;
+
+    left:-10%;
+    width:120%;
+    height:48%;
+
+    bottom:-12%;
+
+    transform:
+        perspective(600px)
+        rotateX(62deg);
+
+    transform-origin:center bottom;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(255,209,38,.28),
+            rgba(153,90,0,.08) 42%,
+            transparent 72%
+        );
+
+    pointer-events:none;
+}
+
+.dust{
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+
+    background:#ffd94a;
+
+    box-shadow:
+        0 0 5px #ffbf00,
+        0 0 10px #ff9500;
+
+    animation:dustGlow var(--d) ease-in-out infinite alternate;
+}
+
+@keyframes dustGlow{
+    from{
+        opacity:.15;
+        transform:scale(.5);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1.6);
+    }
+}
+
+/* =========================================================
+   ESFERA CENTRAL
+========================================================= */
+
+#planetWrap{
+    position:absolute;
+
+    left:50%;
+    top:47%;
+
+    transform:translate(-50%,-50%);
+
+    width:min(340px,62vw);
+    aspect-ratio:1;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#planetGlow{
+    position:absolute;
+    inset:-30%;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,190,0,.25),
+            rgba(255,157,0,.08) 38%,
+            transparent 68%
+        );
+
+    filter:blur(18px);
+
+    animation:planetGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes planetGlow{
+    from{transform:scale(.9);opacity:.65;}
+    to{transform:scale(1.12);opacity:1;}
+}
+
+#planet{
+    position:relative;
+
+    width:65%;
+    aspect-ratio:1;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at 32% 25%,
+            #fff8bb 0%,
+            #ffd946 11%,
+            #e99b00 34%,
+            #8b4700 63%,
+            #351800 100%
+        );
+
+    box-shadow:
+        inset -35px -28px 45px rgba(20,5,0,.6),
+        inset 20px 16px 30px rgba(255,255,200,.3),
+        0 0 18px #ffd52f,
+        0 0 55px rgba(255,174,0,.75),
+        0 0 110px rgba(255,126,0,.35);
+
+    animation:planetFloat 5s ease-in-out infinite;
+}
+
+@keyframes planetFloat{
+    0%,100%{
+        transform:translateY(0) rotate(-2deg);
+    }
+    50%{
+        transform:translateY(-12px) rotate(2deg);
+    }
+}
+
+/* detalles planeta */
+
+.planet-flower{
+    position:absolute;
+    font-size:34px;
+    filter:drop-shadow(0 3px 3px rgba(0,0,0,.4));
+}
+
+.pf1{left:18%;top:20%;}
+.pf2{right:15%;top:28%;}
+.pf3{left:39%;bottom:13%;}
+.pf4{left:10%;bottom:29%;font-size:27px;}
+.pf5{right:8%;bottom:22%;font-size:28px;}
+
+/* anillos */
+
+.orbit{
+    position:absolute;
+
+    width:120%;
+    height:32%;
+
+    left:-10%;
+    top:34%;
+
+    border:4px solid rgba(255,220,70,.8);
+    border-radius:50%;
+
+    transform:rotate(-10deg);
+
+    box-shadow:
+        0 0 10px #ffd21f,
+        0 0 30px #ff9d00;
+
+    animation:orbitPulse 3s ease-in-out infinite alternate;
+}
+
+.orbit.o2{
+    width:140%;
+    left:-20%;
+    top:36%;
+
+    border-width:2px;
+    transform:rotate(8deg);
+
+    opacity:.65;
+}
+
+@keyframes orbitPulse{
+    from{filter:brightness(.8);}
+    to{filter:brightness(1.6);}
+}
+
+/* =========================================================
+   OBJETOS FLOTANTES
+========================================================= */
+
+.float-item{
+    position:absolute;
+
+    transform:translate(-50%,-50%);
+
+    text-align:center;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    transition:
+        transform .25s ease,
+        filter .25s ease;
+
+    animation:floatObject var(--speed) ease-in-out infinite;
+}
+
+.float-item:hover{
+    transform:
+        translate(-50%,-50%)
+        scale(1.18);
+
+    filter:
+        drop-shadow(0 0 14px #ffd32f);
+}
+
+@keyframes floatObject{
+    0%,100%{
+        margin-top:0;
+    }
+    50%{
+        margin-top:-14px;
+    }
+}
+
+.icon{
+    font-size:clamp(35px,5vw,62px);
+    display:block;
+}
+
+.label{
+    display:block;
+
+    margin-top:6px;
+
+    color:#fff0b5;
+    font-family:Arial,sans-serif;
+    font-size:clamp(11px,1.4vw,15px);
+    font-weight:bold;
+
+    text-shadow:
+        0 2px 5px #000,
+        0 0 8px #000;
+}
+
+/* posiciones */
+
+#flowers1{
+    left:14%;
+    top:65%;
+    --speed:4.3s;
+}
+
+#flowers2{
+    left:83%;
+    top:67%;
+    --speed:5s;
+}
+
+#flowers3{
+    left:25%;
+    top:35%;
+    --speed:4.8s;
+}
+
+#cat{
+    left:77%;
+    top:28%;
+    --speed:4s;
+}
+
+#chef{
+    left:12%;
+    top:27%;
+    --speed:5.2s;
+}
+
+#engineer{
+    left:88%;
+    top:43%;
+    --speed:4.5s;
+}
+
+#heartItem{
+    left:28%;
+    top:75%;
+    --speed:4.7s;
+}
+
+/* =========================================================
+   MENSAJES FLOTANTES
+========================================================= */
+
+.words{
+    position:absolute;
+
+    color:#fff6d7;
+
+    font-size:clamp(12px,1.5vw,18px);
+
+    text-shadow:
+        0 0 7px #000,
+        0 0 12px #ffae00;
+
+    pointer-events:none;
+
+    opacity:.88;
+
+    animation:wordFloat 5s ease-in-out infinite;
+}
+
+@keyframes wordFloat{
+    0%,100%{
+        transform:translateY(0);
+        opacity:.55;
+    }
+
+    50%{
+        transform:translateY(-10px);
+        opacity:1;
+    }
+}
+
+.w1{left:6%;top:48%;}
+.w2{left:19%;top:56%;}
+.w3{right:8%;top:57%;}
+.w4{right:18%;top:77%;}
+.w5{left:5%;top:82%;}
+.w6{left:38%;top:82%;}
+
+/* =========================================================
+   INTERFAZ
+========================================================= */
 
 #topTitle{
     position:absolute;
     left:50%;
     top:20px;
+
     transform:translateX(-50%);
 
-    padding:11px 22px;
+    z-index:20;
 
-    border:1px solid #d6ad24;
+    padding:10px 20px;
+
+    border:1px solid rgba(255,210,40,.6);
     border-radius:999px;
 
-    background:rgba(12,8,0,.7);
+    background:rgba(15,10,0,.72);
+    backdrop-filter:blur(6px);
 
-    color:#ffe477;
+    color:#ffe166;
+
+    font-family:Arial,sans-serif;
     font-weight:bold;
+
+    white-space:nowrap;
 }
 
-#instruction{
+#hint{
     position:absolute;
-    bottom:82px;
+
     left:50%;
+    bottom:23px;
+
     transform:translateX(-50%);
-    color:#bdb6a4;
+
+    z-index:20;
+
+    color:#cabd91;
+    font-family:Arial,sans-serif;
+    font-size:13px;
+
     text-align:center;
 }
 
-#music{
-    position:absolute;
-    bottom:25px;
-    left:50%;
-    transform:translateX(-50%);
+/* =========================================================
+   MODAL
+========================================================= */
 
-    pointer-events:auto;
-    cursor:pointer;
-
-    padding:12px 20px;
-
-    border-radius:999px;
-    border:1px solid #e0bd40;
-
-    color:#ffe575;
-    background:rgba(12,8,0,.85);
-
-    font-weight:bold;
-}
-
-/* =========================
-   CARTA
-========================= */
-
-#letter{
+#modal{
     position:fixed;
     inset:0;
-    z-index:200;
 
-    display:flex;
-    align-items:center;
+    z-index:2000;
+
+    display:none;
+
     justify-content:center;
+    align-items:center;
 
     padding:20px;
 
-    background:
-        rgba(0,0,0,.86);
-
+    background:rgba(0,0,0,.78);
     backdrop-filter:blur(8px);
-
-    opacity:0;
-    visibility:hidden;
-    transition:.6s;
 }
 
-#letter.show{
-    opacity:1;
-    visibility:visible;
+#modal.open{
+    display:flex;
+    animation:modalFade .3s ease;
 }
 
-.letterCard{
-    width:min(720px,94vw);
-    max-height:88vh;
-    overflow:auto;
+@keyframes modalFade{
+    from{opacity:0;}
+    to{opacity:1;}
+}
 
-    padding:35px;
+.modal-card{
+    position:relative;
 
-    border-radius:30px;
+    width:min(520px,92vw);
 
-    border:1px solid #e3bd3e;
-
-    background:
-      linear-gradient(
-      145deg,
-      #211400,
-      #090600
-      );
-
-    box-shadow:
-        0 0 50px rgba(255,188,0,.25);
+    padding:40px 30px;
 
     text-align:center;
+
+    border:1px solid #e7b92c;
+    border-radius:28px;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #352300,
+            #100b02 60%,
+            #050300
+        );
+
+    box-shadow:
+        0 0 35px rgba(255,184,0,.3);
 }
 
-.letterCard h2{
-    font-family:Georgia,serif;
-    color:#ffe16b;
-    font-size:clamp(30px,5vw,50px);
-    margin-bottom:20px;
+.modal-emoji{
+    font-size:75px;
 }
 
-.letterCard p{
-    font-family:Georgia,serif;
-    color:#fff3d3;
-    line-height:1.7;
-    font-size:18px;
-    margin:14px 0;
-}
+#modalTitle{
+    margin-top:15px;
 
-#closeLetter{
-    margin-top:20px;
-    border:none;
-    border-radius:999px;
-    padding:14px 28px;
-    cursor:pointer;
-    background:#ffd23d;
-    color:#211500;
-    font-weight:bold;
-}
+    color:#ffe065;
 
-/* =========================
-   CORAZONES VOLADORES
-========================= */
-
-.flyingHeart{
-    position:fixed;
-    z-index:70;
-    pointer-events:none;
     font-size:30px;
-    filter:drop-shadow(0 0 10px #ffc400);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+#modalText{
+    margin-top:18px;
+
+    color:#fff1cf;
+
+    font-size:19px;
+    line-height:1.55;
+}
+
+#closeModal{
+    margin-top:28px;
+
+    padding:13px 25px;
+
+    border:0;
+    border-radius:999px;
+
+    background:#ffd22f;
+    color:#201400;
+
+    font-size:16px;
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+/* =========================================================
+   SORPRESA
+========================================================= */
+
+#secret{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%) scale(0);
+
+    z-index:50;
+
+    width:min(650px,90vw);
+
+    padding:40px;
+
+    text-align:center;
+
+    border:1px solid #ffe066;
+    border-radius:30px;
+
+    background:rgba(10,6,0,.93);
+
+    box-shadow:
+        0 0 30px #ffb700,
+        0 0 100px rgba(255,166,0,.3);
+
+    transition:transform .6s cubic-bezier(.2,1.5,.4,1);
+}
+
+#secret.show{
+    transform:translate(-50%,-50%) scale(1);
+}
+
+#secret h2{
+    color:#ffe166;
+    font-size:clamp(35px,6vw,65px);
+}
+
+#secret p{
+    margin-top:20px;
+    color:#fff1d0;
+    line-height:1.6;
+    font-size:20px;
+}
+
+#secret button{
+    margin-top:25px;
+    border:0;
+    border-radius:999px;
+
+    padding:14px 25px;
+
+    background:#ffd22f;
+    color:#211300;
+
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* =========================================================
+   CORAZONES DE SORPRESA
+========================================================= */
+
+.love-particle{
+    position:fixed;
+    z-index:1900;
+
+    pointer-events:none;
+
+    font-size:25px;
+
+    animation:loveExplosion 2.4s ease-out forwards;
+}
+
+@keyframes loveExplosion{
+
+    from{
+        transform:
+            translate(-50%,-50%)
+            translate(0,0)
+            scale(.5);
+
+        opacity:1;
+    }
+
+    to{
+        transform:
+            translate(-50%,-50%)
+            translate(var(--lx),var(--ly))
+            rotate(var(--rot))
+            scale(1.4);
+
+        opacity:0;
+    }
+}
+
+/* =========================================================
+   MÓVIL
+========================================================= */
 
 @media(max-width:700px){
 
-    #career{
-        top:auto;
-        right:12px;
-        bottom:125px;
-        width:230px;
-        font-size:13px;
+    .cover-content h1{
+        font-size:52px;
     }
 
-    #lover{
-        left:20px;
-        top:15%;
+    .sunflower{
+        font-size:55px;
     }
 
-    .loverIcon{
-        font-size:50px;
+    .intro{
+        font-size:17px;
+    }
+
+    #enterBtn{
+        font-size:17px;
+        padding:16px 25px;
+    }
+
+    #planetWrap{
+        top:47%;
+        width:270px;
+    }
+
+    .icon{
+        font-size:40px;
+    }
+
+    .label{
+        font-size:10px;
+    }
+
+    #flowers1{
+        left:13%;
+        top:69%;
+    }
+
+    #flowers2{
+        left:86%;
+        top:70%;
+    }
+
+    #flowers3{
+        left:21%;
+        top:38%;
+    }
+
+    #cat{
+        left:81%;
+        top:30%;
+    }
+
+    #chef{
+        left:12%;
+        top:24%;
+    }
+
+    #engineer{
+        left:89%;
+        top:48%;
+    }
+
+    #heartItem{
+        left:27%;
+        top:80%;
+    }
+
+    .words{
+        font-size:10px;
     }
 
     #topTitle{
-        font-size:13px;
-        width:max-content;
-    }
-
-    #instruction{
         font-size:12px;
     }
 }
+
 </style>
 </head>
 
 <body>
 
-<div id="scene">
+<!-- ======================================================
+     PORTADA
+====================================================== -->
 
-    <div id="stars"></div>
+<section id="cover">
 
-    <div id="universe">
+    <div class="cover-content">
 
-        <div id="horizon"></div>
-        <div id="floor"></div>
-
-        <div id="flowers"></div>
-
-        <div id="planetWrap">
-
-            <div id="planet">
-
-                <span class="planetFlower pf1">🌻</span>
-                <span class="planetFlower pf2">🌼</span>
-                <span class="planetFlower pf3">🌻</span>
-                <span class="planetFlower pf4">💛</span>
-                <span class="planetFlower pf5">🌼</span>
-
-                <div class="ring r1"></div>
-                <div class="ring r2"></div>
-
-            </div>
-
-        </div>
-
-        <div id="lover">
-            <div class="loverIcon">🧑‍💐</div>
-            <p>
-                Alguien sigue<br>
-                enamorándose de ti.
-            </p>
-        </div>
-
-        <div id="career">
-
-            <div class="careerIcons">
-                👩‍🍳 💛 👷‍♀️
-            </div>
-
-            <h2>Mi Pollo ✨</h2>
-
-            <p>
-                Entre recetas, planos, cálculos,
-                obras y sueños...
-                sigues siendo mi persona favorita.
-            </p>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- PORTADA -->
-
-<section id="intro">
-
-    <div class="intro-box">
-
-        <div class="sunflower-top">
-            🌻
-        </div>
+        <span class="sunflower">🌻</span>
 
         <h1>
-            Para mi Pollo 💛
+            Para mi Pollo
+            <span class="heart">💛</span>
         </h1>
 
-        <div class="subtitle">
+        <div class="intro">
             Belén, preparé un pequeño universo para ti.<br>
             Entra, recórrelo y descubre las sorpresas
             que dejé entre las estrellas.
@@ -853,7 +1083,7 @@ h1{
             siempre te elegiría a ti.”
         </div>
 
-        <button id="enter">
+        <button id="enterBtn" type="button">
             Iniciar nuestro universo ✨
         </button>
 
@@ -865,984 +1095,823 @@ h1{
 
 </section>
 
-<!-- BIG BANG -->
 
-<div id="bang"></div>
+<!-- ======================================================
+     BIG BANG
+====================================================== -->
 
-<div id="bangText">
-    Nuestro universo ✨
+<div id="bigbang">
+
+    <div id="flash"></div>
+
+    <div class="ring"></div>
+    <div class="ring r2"></div>
+    <div class="ring r3"></div>
+
+    <div id="bangParticles"></div>
+
 </div>
 
-<!-- INTERFAZ -->
 
-<div id="hud">
+<!-- ======================================================
+     UNIVERSO
+====================================================== -->
+
+<main id="universe">
+
+    <div id="stars"></div>
+
+    <div id="goldFloor"></div>
+
+    <div id="dustContainer"></div>
+
 
     <div id="topTitle">
-        🌻 Belén • mi Pollo • mi universo 💛 🐱
+        🌻 Belén • mi Pollo • mi universo 💛
     </div>
 
-    <div id="instruction">
-        Mueve el mouse o desliza para recorrerlo ✨
+
+    <!-- MENSAJES -->
+
+    <span class="words w1">
+        Mi persona favorita 💛
+    </span>
+
+    <span class="words w2">
+        Siempre tú ✨
+    </span>
+
+    <span class="words w3">
+        Brillas como el sol ☀️
+    </span>
+
+    <span class="words w4">
+        Para ti 🌻
+    </span>
+
+    <span class="words w5">
+        Mi lugar bonito
+    </span>
+
+    <span class="words w6">
+        Aquí guardé un pedacito de nosotros ✨
+    </span>
+
+
+    <!-- PLANETA -->
+
+    <div id="planetWrap">
+
+        <div id="planetGlow"></div>
+
+        <div id="planet">
+
+            <span class="planet-flower pf1">🌻</span>
+            <span class="planet-flower pf2">🌼</span>
+            <span class="planet-flower pf3">🌻</span>
+            <span class="planet-flower pf4">🌼</span>
+            <span class="planet-flower pf5">🌻</span>
+
+            <div class="orbit"></div>
+            <div class="orbit o2"></div>
+
+        </div>
+
     </div>
 
-    <button id="music">
-        ♪ Bed Chem — Sabrina Carpenter
-    </button>
 
-</div>
+    <!-- FLORES -->
 
-<!-- CARTA FINAL -->
+    <div
+        class="float-item"
+        id="flowers1"
+        data-title="Flores para mi Pollo 🌻"
+        data-emoji="💐"
+        data-message="Un ramo virtual porque hasta un universo entero se queda pequeño cuando quiero hacerte sonreír."
+    >
+        <span class="icon">💐</span>
+        <span class="label">Para mi Pollo</span>
+    </div>
 
-<div id="letter">
 
-    <div class="letterCard">
+    <div
+        class="float-item"
+        id="flowers2"
+        data-title="Unas amarillas para ti 💛"
+        data-emoji="🌻"
+        data-message="Entre todas estas estrellas también tenía que dejarte flores amarillas. Porque este lugar está hecho pensando en ti."
+    >
+        <span class="icon">🌻</span>
+        <span class="label">Brillas bonito</span>
+    </div>
 
-        <div style="font-size:55px">
+
+    <div
+        class="float-item"
+        id="flowers3"
+        data-title="Otro pequeño detalle 🌼"
+        data-emoji="🌼"
+        data-message="No necesitas una fecha especial para recibir flores. A veces simplemente quiero recordarte que eres importante para mí."
+    >
+        <span class="icon">🌼</span>
+        <span class="label">Una flor para ti</span>
+    </div>
+
+
+    <!-- GATITO -->
+
+    <div
+        class="float-item"
+        id="cat"
+        data-title="Un guardián del universo 🐱"
+        data-emoji="🐱"
+        data-message="Obviamente nuestro universo necesitaba un gatito. Su trabajo oficial es cuidar tus flores y vigilar que siempre haya algo bonito esperándote aquí."
+    >
+        <span class="icon">🐱</span>
+        <span class="label">Tu guardián</span>
+    </div>
+
+
+    <!-- CHEF -->
+
+    <div
+        class="float-item"
+        id="chef"
+        data-title="Mi chef favorita 👩‍🍳"
+        data-emoji="👩‍🍳"
+        data-message="Hasta en mi pequeño universo tenía que existir una referencia a esa parte de ti. Si cocinas algo rico, yo me ofrezco oficialmente como catador."
+    >
+        <span class="icon">👩‍🍳</span>
+        <span class="label">Mi chef</span>
+    </div>
+
+
+    <!-- INGENIERÍA -->
+
+    <div
+        class="float-item"
+        id="engineer"
+        data-title="Ingeniería del corazón 👷‍♀️"
+        data-emoji="👷‍♀️"
+        data-message="Revisé los cálculos: cimentación firme, estructura estable y una carga enorme de cariño. Esta obra queda aprobada. 🏗️💛"
+    >
+        <span class="icon">👷‍♀️</span>
+        <span class="label">Ingeniera de mi universo</span>
+    </div>
+
+
+    <!-- CORAZÓN / SORPRESA -->
+
+    <div
+        class="float-item"
+        id="heartItem"
+    >
+        <span class="icon">💛</span>
+        <span class="label">No toques aquí 👀</span>
+    </div>
+
+
+    <div id="hint">
+        ✨ Toca las flores, el gatito y las sorpresas ✨
+    </div>
+
+
+    <!-- SORPRESA FINAL -->
+
+    <div id="secret">
+
+        <div style="font-size:65px;">
             🌻💛🌻
         </div>
 
         <h2>
-            Para ti, Pollo
+            Belén
         </h2>
 
         <p>
-            Belén, todo lo que viste aquí:
-            las flores, las estrellas, los gatitos,
-            las pequeñas referencias a lo que haces
-            y cada detalle escondido...
-            son solo una pequeña forma de recordarte
-            lo especial que eres para mí.
-        </p>
+            Si encontraste esto, significa que sí hiciste caso
+            cuando decía que no tocaras. 😂
+            <br><br>
 
-        <p>
-            Me gusta imaginar que,
-            aunque existieran millones de caminos,
-            ciudades y universos,
-            habría uno en el que volvería a encontrarte.
-        </p>
+            Este pequeño universo no pretende ser perfecto.
+            Solo quería construir algo diferente para ti:
+            flores, estrellas, gatitos, pequeños detalles
+            y referencias que me hacen pensar en ti.
+            <br><br>
 
-        <p>
             Y si alguna vez te preguntas cuánto te quiero...
             intenté llenar un universo entero
             y todavía me faltó espacio. ✨
         </p>
 
-        <p style="color:#ffd85b;font-weight:bold">
-            Siempre tú. 💛
-        </p>
-
-        <button id="closeLetter">
+        <button id="closeSecret">
             Seguir explorando 🌻
+        </button>
+
+    </div>
+
+</main>
+
+
+<!-- ======================================================
+     MODAL
+====================================================== -->
+
+<div id="modal">
+
+    <div class="modal-card">
+
+        <div
+            class="modal-emoji"
+            id="modalEmoji"
+        >
+            🌻
+        </div>
+
+        <h2 id="modalTitle">
+            Para Belén
+        </h2>
+
+        <p id="modalText"></p>
+
+        <button id="closeModal">
+            Volver al universo ✨
         </button>
 
     </div>
 
 </div>
 
-<!--
-=========================================================
-MÚSICA
-
-Si tienes legalmente el archivo de la canción,
-súbelo al mismo repositorio con el nombre:
-
-bed-chem.mp3
-
-Entonces el navegador intentará reproducirlo
-cuando Belén pulse "Iniciar nuestro universo".
-=========================================================
--->
-
-<audio
-    id="audio"
-    src="bed-chem.mp3"
-    preload="none"
-    loop>
-</audio>
 
 <script>
-(function(){
 
-"use strict";
+/* =========================================================
+   REFERENCIAS
+========================================================= */
 
-/* ================================================
-   ELEMENTOS
-================================================ */
+const cover =
+    document.getElementById("cover");
 
-const enter =
-    document.getElementById("enter");
+const enterBtn =
+    document.getElementById("enterBtn");
 
-const intro =
-    document.getElementById("intro");
-
-const bang =
-    document.getElementById("bang");
-
-const bangText =
-    document.getElementById("bangText");
+const bigbang =
+    document.getElementById("bigbang");
 
 const universe =
     document.getElementById("universe");
 
+const bangParticles =
+    document.getElementById("bangParticles");
+
 const stars =
     document.getElementById("stars");
 
-const flowers =
-    document.getElementById("flowers");
+const dustContainer =
+    document.getElementById("dustContainer");
 
-const hud =
-    document.getElementById("hud");
+const modal =
+    document.getElementById("modal");
 
-const music =
-    document.getElementById("music");
+const modalEmoji =
+    document.getElementById("modalEmoji");
 
-const audio =
-    document.getElementById("audio");
+const modalTitle =
+    document.getElementById("modalTitle");
 
-const planetWrap =
-    document.getElementById("planetWrap");
+const modalText =
+    document.getElementById("modalText");
 
-const career =
-    document.getElementById("career");
+const closeModal =
+    document.getElementById("closeModal");
 
-const lover =
-    document.getElementById("lover");
+const heartItem =
+    document.getElementById("heartItem");
 
-const letter =
-    document.getElementById("letter");
+const secret =
+    document.getElementById("secret");
 
-const closeLetter =
-    document.getElementById("closeLetter");
-
-
-let started=false;
+const closeSecret =
+    document.getElementById("closeSecret");
 
 
-/* ================================================
+/* =========================================================
    CREAR ESTRELLAS
-================================================ */
+   Cantidad moderada = menos lag
+========================================================= */
 
 function createStars(){
 
-    const frag=
+    const total =
+        window.innerWidth < 700 ? 90 : 150;
+
+    const fragment =
         document.createDocumentFragment();
 
-    const amount=
-        window.innerWidth < 700
-        ? 100
-        : 180;
+    for(let i = 0; i < total; i++){
 
-    for(let i=0;i<amount;i++){
-
-        const s=
+        const star =
             document.createElement("span");
 
-        s.className="star";
+        star.className =
+            "star";
 
-        s.style.left=
-            Math.random()*100+"%";
+        star.style.left =
+            Math.random() * 100 + "%";
 
-        s.style.top=
-            Math.random()*100+"%";
+        star.style.top =
+            Math.random() * 100 + "%";
 
-        const size=
-            1+Math.random()*2.3;
+        const size =
+            Math.random() * 2.2 + .7;
 
-        s.style.width=size+"px";
-        s.style.height=size+"px";
+        star.style.width =
+            size + "px";
 
-        s.style.animationDelay=
-            Math.random()*3+"s";
+        star.style.height =
+            size + "px";
 
-        frag.appendChild(s);
+        star.style.setProperty(
+            "--time",
+            (Math.random() * 3 + 1.8) + "s"
+        );
+
+        star.style.animationDelay =
+            Math.random() * 4 + "s";
+
+        fragment.appendChild(star);
     }
 
-    stars.appendChild(frag);
+    stars.appendChild(fragment);
 }
 
-createStars();
 
+/* =========================================================
+   POLVO DORADO
+========================================================= */
 
-/* ================================================
-   FLORES DEL CAMPO
-================================================ */
+function createDust(){
 
-const flowerTypes=[
-    "🌻",
-    "🌻",
-    "🌻",
-    "💐",
-    "🌼",
-    "🌻",
-    "💛"
-];
+    const total =
+        window.innerWidth < 700 ? 90 : 180;
 
-function createFlowers(){
-
-    const frag=
+    const fragment =
         document.createDocumentFragment();
 
-    const amount=
-        window.innerWidth < 700
-        ? 32
-        : 62;
+    for(let i = 0; i < total; i++){
 
-    for(let i=0;i<amount;i++){
+        const dust =
+            document.createElement("span");
 
-        const f=
-            document.createElement("div");
+        dust.className =
+            "dust";
 
-        f.className="flower";
+        dust.style.left =
+            Math.random() * 100 + "%";
 
-        f.textContent=
-            flowerTypes[
+        dust.style.top =
+            (55 + Math.random() * 45) + "%";
+
+        const size =
+            Math.random() * 2.5 + 1;
+
+        dust.style.width =
+            size + "px";
+
+        dust.style.height =
+            size + "px";
+
+        dust.style.setProperty(
+            "--d",
+            (Math.random() * 3 + 1.5) + "s"
+        );
+
+        dust.style.animationDelay =
+            Math.random() * 3 + "s";
+
+        fragment.appendChild(dust);
+    }
+
+    dustContainer.appendChild(fragment);
+}
+
+
+/* =========================================================
+   BIG BANG
+========================================================= */
+
+function createBang(){
+
+    bangParticles.innerHTML = "";
+
+    const total =
+        window.innerWidth < 700 ? 55 : 85;
+
+    const fragment =
+        document.createDocumentFragment();
+
+    const maxDistance =
+        Math.max(
+            window.innerWidth,
+            window.innerHeight
+        ) * .8;
+
+    for(let i = 0; i < total; i++){
+
+        const particle =
+            document.createElement("span");
+
+        particle.className =
+            "bang-particle";
+
+        const angle =
+            Math.random() * Math.PI * 2;
+
+        const distance =
+            maxDistance *
+            (.35 + Math.random() * .75);
+
+        const x =
+            Math.cos(angle) * distance;
+
+        const y =
+            Math.sin(angle) * distance;
+
+        particle.style.setProperty(
+            "--x",
+            x + "px"
+        );
+
+        particle.style.setProperty(
+            "--y",
+            y + "px"
+        );
+
+        const size =
+            Math.random() * 5 + 2;
+
+        particle.style.width =
+            size + "px";
+
+        particle.style.height =
+            size + "px";
+
+        particle.style.animationDelay =
+            Math.random() * .25 + "s";
+
+        fragment.appendChild(particle);
+    }
+
+    bangParticles.appendChild(fragment);
+}
+
+
+/* =========================================================
+   BOTÓN PRINCIPAL
+
+   ESTA ES LA PARTE IMPORTANTE.
+   No depende de audio, librerías ni Three.js.
+========================================================= */
+
+function enterUniverse(){
+
+    /* evitar doble clic */
+
+    enterBtn.disabled = true;
+
+    /* ocultar portada */
+
+    cover.classList.add("hide");
+
+    /* preparar explosión */
+
+    createBang();
+
+    bigbang.classList.add("active");
+
+
+    /* quitar portada completamente */
+
+    setTimeout(function(){
+
+        cover.style.display =
+            "none";
+
+    },800);
+
+
+    /* mostrar universo detrás del Big Bang */
+
+    setTimeout(function(){
+
+        universe.classList.add("show");
+
+    },900);
+
+
+    /* terminar explosión */
+
+    setTimeout(function(){
+
+        bigbang.classList.remove("active");
+
+        bigbang.style.display =
+            "none";
+
+    },2300);
+}
+
+
+/* CLICK NORMAL */
+
+enterBtn.onclick =
+    enterUniverse;
+
+
+/* SOPORTE TÁCTIL */
+
+enterBtn.addEventListener(
+    "touchend",
+    function(event){
+
+        event.preventDefault();
+
+        enterUniverse();
+
+    },
+    {passive:false}
+);
+
+
+/* =========================================================
+   MODALES DE OBJETOS
+========================================================= */
+
+const items =
+    document.querySelectorAll(
+        ".float-item[data-message]"
+    );
+
+items.forEach(function(item){
+
+    item.addEventListener(
+        "click",
+        function(){
+
+            modalEmoji.textContent =
+                item.dataset.emoji || "🌻";
+
+            modalTitle.textContent =
+                item.dataset.title || "Para ti";
+
+            modalText.textContent =
+                item.dataset.message || "";
+
+            modal.classList.add("open");
+        }
+    );
+
+});
+
+
+function hideModal(){
+
+    modal.classList.remove("open");
+
+}
+
+
+closeModal.addEventListener(
+    "click",
+    hideModal
+);
+
+
+modal.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === modal){
+            hideModal();
+        }
+
+    }
+);
+
+
+/* =========================================================
+   SORPRESA DEL CORAZÓN
+========================================================= */
+
+heartItem.addEventListener(
+    "click",
+    function(event){
+
+        secret.classList.add("show");
+
+        loveExplosion(
+            event.clientX,
+            event.clientY
+        );
+
+    }
+);
+
+
+closeSecret.addEventListener(
+    "click",
+    function(){
+
+        secret.classList.remove("show");
+
+    }
+);
+
+
+/* =========================================================
+   EXPLOSIÓN DE CORAZONES Y FLORES
+========================================================= */
+
+function loveExplosion(x,y){
+
+    const emojis =
+        [
+            "💛",
+            "🌻",
+            "✨",
+            "🌼",
+            "💐",
+            "⭐",
+            "🐱"
+        ];
+
+    for(let i = 0; i < 35; i++){
+
+        const element =
+            document.createElement("span");
+
+        element.className =
+            "love-particle";
+
+        element.textContent =
+            emojis[
                 Math.floor(
-                    Math.random()*
-                    flowerTypes.length
+                    Math.random() *
+                    emojis.length
                 )
             ];
 
-        /*
-        Dejamos libre el centro para
-        que se vea la esfera.
-        */
+        element.style.left =
+            x + "px";
 
-        let x;
+        element.style.top =
+            y + "px";
 
-        if(Math.random()<.5){
-            x=3+Math.random()*34;
-        }
-        else{
-            x=63+Math.random()*34;
-        }
+        const angle =
+            Math.random() *
+            Math.PI *
+            2;
 
-        const y=
-            55+Math.random()*38;
+        const distance =
+            100 +
+            Math.random() *
+            300;
 
-        f.style.left=x+"%";
-        f.style.top=y+"%";
-
-        const size=
-            25+Math.random()*42;
-
-        f.style.fontSize=
-            size+"px";
-
-        f.style.animationDelay=
-            Math.random()*4+"s";
-
-        frag.appendChild(f);
-    }
-
-    flowers.appendChild(frag);
-}
-
-createFlowers();
-
-
-/* ================================================
-   FRASES ROMÁNTICAS
-================================================ */
-
-const phrases=[
-    {
-        text:"Mi persona favorita 💛",
-        x:13,
-        y:62
-    },
-    {
-        text:"Siempre tú 🌻",
-        x:25,
-        y:73
-    },
-    {
-        text:"Eres mi luz ✨",
-        x:39,
-        y:64
-    },
-    {
-        text:"Brillas como el sol ☀️",
-        x:61,
-        y:69
-    },
-    {
-        text:"Flores para ti 💐",
-        x:78,
-        y:59
-    },
-    {
-        text:"Qué bonito coincidir contigo",
-        x:84,
-        y:77
-    }
-];
-
-phrases.forEach((p)=>{
-
-    const el=
-        document.createElement("div");
-
-    el.className="message";
-
-    el.textContent=p.text;
-
-    el.style.left=p.x+"%";
-    el.style.top=p.y+"%";
-
-    el.style.fontSize=
-        (14+Math.random()*7)+"px";
-
-    universe.appendChild(el);
-});
-
-
-/* ================================================
-   GATITOS
-================================================ */
-
-function createCat(
-    x,
-    y,
-    emoji
-){
-
-    const cat=
-        document.createElement("div");
-
-    cat.className="cat";
-    cat.textContent=emoji;
-
-    cat.style.left=x+"%";
-    cat.style.top=y+"%";
-
-    cat.style.animationDelay=
-        Math.random()*2+"s";
-
-    universe.appendChild(cat);
-}
-
-createCat(7,45,"🐱");
-createCat(88,44,"🐈");
-createCat(74,82,"🐱");
-
-
-/* ================================================
-   EXPLOSIÓN DE PARTÍCULAS
-================================================ */
-
-function particles(){
-
-    const count=
-        window.innerWidth < 700
-        ? 45
-        : 90;
-
-    for(let i=0;i<count;i++){
-
-        const p=
-            document.createElement("div");
-
-        p.style.position="fixed";
-        p.style.zIndex="85";
-        p.style.left="50%";
-        p.style.top="50%";
-        p.style.width="4px";
-        p.style.height="4px";
-        p.style.borderRadius="50%";
-        p.style.background=
-            i%3===0
-            ? "#fff"
-            : "#ffd23c";
-
-        p.style.pointerEvents="none";
-
-        document.body.appendChild(p);
-
-        const angle=
-            Math.random()*
-            Math.PI*2;
-
-        const distance=
-            100+
-            Math.random()*
-            Math.max(
-                innerWidth,
-                innerHeight
-            )*.7;
-
-        const x=
-            Math.cos(angle)*
+        const lx =
+            Math.cos(angle) *
             distance;
 
-        const y=
-            Math.sin(angle)*
+        const ly =
+            Math.sin(angle) *
             distance;
 
-        const animation=
-            p.animate(
-            [
-                {
-                    transform:
-                    "translate(-50%,-50%) scale(0)",
-                    opacity:1
-                },
+        element.style.setProperty(
+            "--lx",
+            lx + "px"
+        );
 
-                {
-                    transform:
-                    `translate(calc(-50% + ${x}px),calc(-50% + ${y}px)) scale(${1+Math.random()*2})`,
-                    opacity:0
-                }
-            ],
-            {
-                duration:
-                    1200+
-                    Math.random()*1100,
+        element.style.setProperty(
+            "--ly",
+            ly + "px"
+        );
 
-                easing:
-                    "cubic-bezier(.1,.7,.2,1)"
-            });
+        element.style.setProperty(
+            "--rot",
+            (
+                Math.random() *
+                500 -
+                250
+            ) + "deg"
+        );
 
-        animation.onfinish=
-            ()=>p.remove();
+        document.body.appendChild(
+            element
+        );
+
+        setTimeout(
+            function(){
+
+                element.remove();
+
+            },
+            2500
+        );
     }
 }
 
 
-/* ================================================
-   CORAZÓN FUGAZ
-================================================ */
+/* =========================================================
+   EFECTO DE PROFUNDIDAD CON MOUSE
+   MUY LIGERO, NO ES THREE.JS
+========================================================= */
 
-function shootingHeart(){
+let targetX = 0;
+let targetY = 0;
 
-    const heart=
-        document.createElement("div");
+let currentX = 0;
+let currentY = 0;
 
-    heart.className=
-        "flyingHeart";
-
-    heart.textContent=
-        Math.random()>.4
-        ? "💛"
-        : "🌻";
-
-    heart.style.left="-70px";
-
-    heart.style.top=
-        (15+Math.random()*45)+"%";
-
-    document.body.appendChild(heart);
-
-    /*
-    ESTA ES LA PARTE QUE ESTABA MAL
-    EN EL CÓDIGO ANTERIOR.
-
-    Aquí NO hay barras invertidas
-    delante de las comillas ni ${}.
-    */
-
-    const destinationX=
-        window.innerWidth+150;
-
-    const destinationY=
-        100+Math.random()*220;
-
-    const animation=
-        heart.animate(
-        [
-            {
-                transform:
-                "translate(0,0) rotate(-18deg) scale(.6)",
-                opacity:0
-            },
-
-            {
-                opacity:1,
-                offset:.12
-            },
-
-            {
-                transform:
-                `translate(${destinationX}px,${destinationY}px) rotate(20deg) scale(1.2)`,
-                opacity:0
-            }
-        ],
-        {
-            duration:3300,
-            easing:
-                "cubic-bezier(.2,.6,.2,1)"
-        });
-
-    animation.onfinish=
-        ()=>heart.remove();
-}
-
-
-/* ================================================
-   RAMO SORPRESA
-================================================ */
-
-function bouquetSurprise(){
-
-    const b=
-        document.createElement("div");
-
-    b.innerHTML=
-        `
-        <div style="
-            font-size:90px;
-            filter:drop-shadow(0 0 22px #ffc400)
-        ">
-            💐
-        </div>
-
-        <div style="
-            margin-top:8px;
-            color:#ffe477;
-            font-family:Georgia,serif;
-            font-weight:bold;
-            font-size:20px;
-            text-shadow:0 0 10px #000
-        ">
-            Flores para mi Pollo 🌻
-        </div>
-        `;
-
-    b.style.cssText=
-        `
-        position:fixed;
-        left:50%;
-        bottom:8%;
-        z-index:65;
-        text-align:center;
-        pointer-events:none;
-        transform:translate(-50%,80px) scale(.5);
-        opacity:0;
-        `;
-
-    document.body.appendChild(b);
-
-    const animation=
-        b.animate(
-        [
-            {
-                transform:
-                    "translate(-50%,80px) scale(.5)",
-                opacity:0
-            },
-
-            {
-                transform:
-                    "translate(-50%,0) scale(1)",
-                opacity:1,
-                offset:.25
-            },
-
-            {
-                transform:
-                    "translate(-50%,0) scale(1)",
-                opacity:1,
-                offset:.78
-            },
-
-            {
-                transform:
-                    "translate(-50%,-25px) scale(1.08)",
-                opacity:0
-            }
-        ],
-        {
-            duration:5200,
-            easing:"ease-out"
-        });
-
-    animation.onfinish=
-        ()=>b.remove();
-}
-
-
-/* ================================================
-   MENSAJE SORPRESA
-================================================ */
-
-function specialMessage(){
-
-    const msg=
-        document.createElement("div");
-
-    msg.innerHTML=
-        `
-        <div style="font-size:42px">
-            🌻 ✨ 💛 ✨ 🌻
-        </div>
-
-        <div style="
-            margin-top:12px;
-            font-family:Georgia,serif;
-            color:#fff4cf;
-            font-size:clamp(19px,3vw,30px);
-            font-weight:bold;
-        ">
-            Belén, hay personas bonitas...
-            <br>
-            y luego estás tú.
-        </div>
-        `;
-
-    msg.style.cssText=
-        `
-        position:fixed;
-        z-index:75;
-        left:50%;
-        top:28%;
-        transform:translate(-50%,-50%) scale(.8);
-        text-align:center;
-        width:min(700px,90vw);
-        pointer-events:none;
-        opacity:0;
-        text-shadow:0 0 15px #000;
-        `;
-
-    document.body.appendChild(msg);
-
-    const animation=
-        msg.animate(
-        [
-            {
-                opacity:0,
-                transform:
-                    "translate(-50%,-50%) scale(.8)"
-            },
-
-            {
-                opacity:1,
-                transform:
-                    "translate(-50%,-50%) scale(1)",
-                offset:.18
-            },
-
-            {
-                opacity:1,
-                transform:
-                    "translate(-50%,-50%) scale(1)",
-                offset:.8
-            },
-
-            {
-                opacity:0,
-                transform:
-                    "translate(-50%,-50%) scale(1.08)"
-            }
-        ],
-        {
-            duration:6000,
-            easing:"ease-out"
-        });
-
-    animation.onfinish=
-        ()=>msg.remove();
-}
-
-
-/* ================================================
-   MOVIMIENTO DEL UNIVERSO
-================================================ */
-
-let mouseX=0;
-let mouseY=0;
-
-function moveUniverse(
-    clientX,
-    clientY
-){
-
-    if(!started){
-        return;
-    }
-
-    mouseX=
-        (clientX/window.innerWidth-.5);
-
-    mouseY=
-        (clientY/window.innerHeight-.5);
-
-    /*
-    Movimiento suave.
-    No renderizamos miles de objetos 3D,
-    por eso esta versión consume mucho menos.
-    */
-
-    planetWrap.style.transform=
-        `translate(-50%,-50%) translate(${mouseX*-30}px,${mouseY*-20}px)`;
-
-    flowers.style.transform=
-        `translate(${mouseX*-14}px,${mouseY*-7}px)`;
-}
-
-
-window.addEventListener(
+document.addEventListener(
     "mousemove",
-    (e)=>{
-        moveUniverse(
-            e.clientX,
-            e.clientY
-        );
-    },
-    {passive:true}
+    function(event){
+
+        targetX =
+            (
+                event.clientX /
+                window.innerWidth
+                -
+                .5
+            ) * 12;
+
+        targetY =
+            (
+                event.clientY /
+                window.innerHeight
+                -
+                .5
+            ) * 8;
+
+    }
 );
 
+
+function animateScene(){
+
+    currentX +=
+        (targetX-currentX) *
+        .04;
+
+    currentY +=
+        (targetY-currentY) *
+        .04;
+
+    const planet =
+        document.getElementById(
+            "planetWrap"
+        );
+
+    if(planet){
+
+        planet.style.marginLeft =
+            currentX + "px";
+
+        planet.style.marginTop =
+            currentY + "px";
+    }
+
+    requestAnimationFrame(
+        animateScene
+    );
+}
+
+
+/* =========================================================
+   INICIAR ELEMENTOS
+========================================================= */
+
+createStars();
+
+createDust();
+
+animateScene();
+
+
+/* =========================================================
+   SEGURIDAD EXTRA
+
+   Si el navegador restaura la página desde caché,
+   aseguramos que la portada vuelva a estar activa.
+========================================================= */
 
 window.addEventListener(
-    "touchmove",
-    (e)=>{
+    "pageshow",
+    function(){
 
-        if(!e.touches.length){
-            return;
-        }
+        enterBtn.disabled = false;
 
-        moveUniverse(
-            e.touches[0].clientX,
-            e.touches[0].clientY
-        );
-
-    },
-    {passive:true}
+    }
 );
 
-
-/* ================================================
-   INICIAR UNIVERSO
-================================================ */
-
-enter.addEventListener(
-"click",
-async function(){
-
-    if(started){
-        return;
-    }
-
-    started=true;
-
-    /*
-    Primero intentamos iniciar audio
-    porque el navegador permite audio
-    cuando proviene directamente de un clic.
-    */
-
-    try{
-
-        audio.volume=.68;
-
-        await audio.play();
-
-        music.textContent=
-            "❚❚ Bed Chem — Sabrina Carpenter";
-
-    }
-    catch(error){
-
-        music.textContent=
-            "▶ Bed Chem — Sabrina Carpenter";
-
-    }
-
-
-    /* desaparecer portada */
-
-    intro.classList.add("hide");
-
-
-    /* BIG BANG */
-
-    bang.classList.remove("go");
-    bangText.classList.remove("go");
-
-    void bang.offsetWidth;
-
-    bang.classList.add("go");
-    bangText.classList.add("go");
-
-    particles();
-
-
-    /*
-    Mostramos universo después
-    de la explosión.
-    */
-
-    setTimeout(
-    function(){
-
-        stars.classList.add("show");
-        universe.classList.add("show");
-        hud.classList.add("on");
-
-    },
-    1150
-    );
-
-
-    /*
-    SORPRESAS
-    */
-
-    setTimeout(
-        shootingHeart,
-        4000
-    );
-
-    setTimeout(
-        bouquetSurprise,
-        6500
-    );
-
-    setTimeout(
-    function(){
-        lover.classList.add("show");
-    },
-    10500
-    );
-
-    setTimeout(
-    function(){
-        career.classList.add("show");
-    },
-    13500
-    );
-
-    setTimeout(
-        specialMessage,
-        17500
-    );
-
-    setTimeout(
-        shootingHeart,
-        23500
-    );
-
-    /*
-    Carta final.
-    No aparece inmediatamente.
-    */
-
-    setTimeout(
-    function(){
-        letter.classList.add("show");
-    },
-    32000
-    );
-
-});
-
-
-/* ================================================
-   CONTROL DE MÚSICA
-================================================ */
-
-music.addEventListener(
-"click",
-async function(){
-
-    if(audio.paused){
-
-        try{
-
-            await audio.play();
-
-            music.textContent=
-                "❚❚ Bed Chem — Sabrina Carpenter";
-
-        }
-        catch(error){
-
-            /*
-            Si no existe bed-chem.mp3,
-            simplemente mostramos aviso.
-            */
-
-            music.textContent=
-                "♪ Añade bed-chem.mp3 al repositorio";
-
-        }
-
-    }
-    else{
-
-        audio.pause();
-
-        music.textContent=
-            "▶ Bed Chem — Sabrina Carpenter";
-
-    }
-
-});
-
-
-/* ================================================
-   CERRAR CARTA
-================================================ */
-
-closeLetter.addEventListener(
-"click",
-function(){
-
-    letter.classList.remove("show");
-
-    bouquetSurprise();
-
-    setTimeout(
-        shootingHeart,
-        600
-    );
-
-});
-
-
-/* ================================================
-   PEQUEÑOS EVENTOS ALEATORIOS
-================================================ */
-
-setInterval(
-function(){
-
-    if(!started){
-        return;
-    }
-
-    /*
-    Muy pocas partículas/eventos.
-    Así evitamos el lag del código anterior.
-    */
-
-    if(Math.random()>.6){
-        shootingHeart();
-    }
-
-},
-12000
-);
-
-
-/* ================================================
-   DOBLE CLIC EN ESFERA
-================================================ */
-
-document
-.getElementById("planet")
-.addEventListener(
-"click",
-function(){
-
-    if(!started){
-        return;
-    }
-
-    bouquetSurprise();
-
-});
-
-
-})();
 </script>
 
 </body>
