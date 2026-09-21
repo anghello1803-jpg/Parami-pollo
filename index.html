@@ -2,14 +2,24 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width,
+    initial-scale=1,
+    maximum-scale=1,
+    user-scalable=no,
+    viewport-fit=cover"
+>
+
 <meta name="theme-color" content="#000000">
 
 <title>Para mi Pollo 💛</title>
 
 <style>
+
 /* =========================================================
-   BASE
+   CONFIGURACIÓN GENERAL
 ========================================================= */
 
 *{
@@ -25,1070 +35,966 @@ body{
     overflow:hidden;
     background:#000;
     color:white;
-    font-family:Georgia,"Times New Roman",serif;
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    overscroll-behavior:none;
 }
 
-button{
-    font-family:Arial,sans-serif;
-}
-
-/* =========================================================
-   PORTADA
-========================================================= */
-
-#cover{
-    position:fixed;
-    inset:0;
-    z-index:1000;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    background:
-        radial-gradient(
-            circle at 50% 46%,
-            rgba(255,190,0,.16),
-            rgba(50,25,0,.05) 30%,
-            #000 68%
-        );
-
-    transition:
-        opacity .8s ease,
-        transform .8s ease,
-        filter .8s ease;
-}
-
-#cover.hide{
-    opacity:0;
-    transform:scale(1.12);
-    filter:blur(8px);
-    pointer-events:none;
-}
-
-.cover-content{
-    width:min(900px,92%);
-    text-align:center;
-    position:relative;
-    z-index:3;
-}
-
-.sunflower{
-    font-size:70px;
-    display:block;
-    margin-bottom:15px;
-
-    filter:
-        drop-shadow(0 0 10px #ffca18)
-        drop-shadow(0 0 30px #ff9d00);
-
-    animation:flowerFloat 3s ease-in-out infinite;
-}
-
-@keyframes flowerFloat{
-    0%,100%{transform:translateY(0) rotate(-3deg);}
-    50%{transform:translateY(-10px) rotate(3deg);}
-}
-
-.cover-content h1{
-    font-size:clamp(52px,8vw,100px);
-    color:#ffe066;
-    line-height:1;
-
-    text-shadow:
-        0 0 8px #ffcf32,
-        0 0 22px rgba(255,181,0,.85),
-        0 0 50px rgba(255,140,0,.45);
-}
-
-.cover-content .heart{
-    display:inline-block;
-    animation:heartBeat 1.6s ease-in-out infinite;
-}
-
-@keyframes heartBeat{
-    0%,100%{transform:scale(1);}
-    15%{transform:scale(1.13);}
-    30%{transform:scale(1);}
-    45%{transform:scale(1.08);}
-}
-
-.intro{
-    margin-top:32px;
-    color:#fff3d2;
-    font-size:clamp(18px,2.1vw,26px);
-    line-height:1.55;
-    font-weight:bold;
-}
-
-.quote{
-    margin-top:25px;
-    color:#ffd44d;
-    font-size:clamp(16px,1.8vw,21px);
-    font-style:italic;
-}
-
-#enterBtn{
-    margin-top:32px;
-    border:1px solid #fff0a0;
-    border-radius:999px;
-    padding:18px 38px;
-
-    color:#241500;
-    background:linear-gradient(
-        180deg,
-        #ffe774,
-        #ffc400
-    );
-
-    font-size:20px;
-    font-weight:900;
-    cursor:pointer;
-
-    box-shadow:
-        0 0 15px rgba(255,211,42,.45),
-        0 0 45px rgba(255,177,0,.25);
-
-    transition:
-        transform .18s ease,
-        box-shadow .18s ease;
-}
-
-#enterBtn:hover{
-    transform:scale(1.06);
-    box-shadow:
-        0 0 20px rgba(255,225,80,.8),
-        0 0 60px rgba(255,177,0,.4);
-}
-
-#enterBtn:active{
-    transform:scale(.97);
-}
-
-.small{
-    margin-top:18px;
-    color:#bba76c;
-    font-family:Arial,sans-serif;
-    font-size:14px;
+body{
+    touch-action:none;
 }
 
 /* =========================================================
-   BIG BANG
-========================================================= */
-
-#bigbang{
-    position:fixed;
-    inset:0;
-    z-index:900;
-
-    display:none;
-    pointer-events:none;
-    overflow:hidden;
-    background:#000;
-}
-
-#bigbang.active{
-    display:block;
-}
-
-#flash{
-    position:absolute;
-    left:50%;
-    top:50%;
-
-    width:5px;
-    height:5px;
-    border-radius:50%;
-
-    transform:translate(-50%,-50%);
-
-    background:white;
-
-    box-shadow:
-        0 0 20px white,
-        0 0 60px #fff6ad,
-        0 0 120px #ffc400,
-        0 0 220px #ff7b00;
-
-    animation:explode 2.2s ease-out forwards;
-}
-
-@keyframes explode{
-
-    0%{
-        width:2px;
-        height:2px;
-        opacity:1;
-    }
-
-    25%{
-        width:80px;
-        height:80px;
-        opacity:1;
-    }
-
-    55%{
-        width:450px;
-        height:450px;
-        opacity:1;
-    }
-
-    80%{
-        width:130vw;
-        height:130vw;
-        opacity:.9;
-    }
-
-    100%{
-        width:180vw;
-        height:180vw;
-        opacity:0;
-    }
-}
-
-.ring{
-    position:absolute;
-    left:50%;
-    top:50%;
-
-    width:20px;
-    height:20px;
-
-    border:4px solid #ffe057;
-    border-radius:50%;
-
-    transform:translate(-50%,-50%);
-
-    box-shadow:
-        0 0 20px #ffe057,
-        inset 0 0 20px #ffe057;
-
-    animation:ringExplosion 2s ease-out forwards;
-}
-
-.ring.r2{
-    animation-delay:.18s;
-    border-color:#ff9d00;
-}
-
-.ring.r3{
-    animation-delay:.35s;
-    border-width:2px;
-}
-
-@keyframes ringExplosion{
-    from{
-        width:20px;
-        height:20px;
-        opacity:1;
-    }
-
-    to{
-        width:150vmax;
-        height:150vmax;
-        opacity:0;
-    }
-}
-
-/* partículas Big Bang */
-
-.bang-particle{
-    position:absolute;
-    left:50%;
-    top:50%;
-
-    width:5px;
-    height:5px;
-
-    border-radius:50%;
-    background:#fff5b0;
-
-    box-shadow:0 0 12px #ffc400;
-
-    animation:particleBang 1.8s ease-out forwards;
-}
-
-@keyframes particleBang{
-    from{
-        transform:
-            translate(-50%,-50%)
-            translate(0,0)
-            scale(1);
-        opacity:1;
-    }
-
-    to{
-        transform:
-            translate(-50%,-50%)
-            translate(var(--x),var(--y))
-            scale(.2);
-        opacity:0;
-    }
-}
-
-/* =========================================================
-   UNIVERSO
+   CANVAS DEL UNIVERSO
 ========================================================= */
 
 #universe{
     position:fixed;
     inset:0;
-    display:none;
-    overflow:hidden;
 
-    background:
-        radial-gradient(
-            ellipse at center,
-            #1c1302 0%,
-            #090701 38%,
-            #010101 75%
-        );
-}
+    width:100%;
+    height:100%;
 
-#universe.show{
     display:block;
-    animation:universeAppear 1.5s ease both;
+
+    background:#000;
+
+    cursor:grab;
+
+    touch-action:none;
 }
 
-@keyframes universeAppear{
-    from{
-        opacity:0;
-        filter:brightness(3);
-    }
-    to{
-        opacity:1;
-        filter:brightness(1);
-    }
+#universe:active{
+    cursor:grabbing;
 }
+
 
 /* =========================================================
-   ESTRELLAS
+   PANTALLA DE INICIO
 ========================================================= */
 
-#stars{
-    position:absolute;
+#intro{
+
+    position:fixed;
+
     inset:0;
-    overflow:hidden;
-    pointer-events:none;
-}
 
-.star{
-    position:absolute;
-
-    width:2px;
-    height:2px;
-
-    border-radius:50%;
-    background:white;
-
-    opacity:.7;
-
-    animation:twinkle var(--time) ease-in-out infinite alternate;
-}
-
-@keyframes twinkle{
-    from{
-        opacity:.15;
-        transform:scale(.7);
-    }
-    to{
-        opacity:1;
-        transform:scale(1.8);
-        box-shadow:0 0 8px white;
-    }
-}
-
-/* =========================================================
-   POLVO DORADO / ALFOMBRA
-========================================================= */
-
-#goldFloor{
-    position:absolute;
-
-    left:-10%;
-    width:120%;
-    height:48%;
-
-    bottom:-12%;
-
-    transform:
-        perspective(600px)
-        rotateX(62deg);
-
-    transform-origin:center bottom;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            rgba(255,209,38,.28),
-            rgba(153,90,0,.08) 42%,
-            transparent 72%
-        );
-
-    pointer-events:none;
-}
-
-.dust{
-    position:absolute;
-    width:3px;
-    height:3px;
-    border-radius:50%;
-
-    background:#ffd94a;
-
-    box-shadow:
-        0 0 5px #ffbf00,
-        0 0 10px #ff9500;
-
-    animation:dustGlow var(--d) ease-in-out infinite alternate;
-}
-
-@keyframes dustGlow{
-    from{
-        opacity:.15;
-        transform:scale(.5);
-    }
-
-    to{
-        opacity:1;
-        transform:scale(1.6);
-    }
-}
-
-/* =========================================================
-   ESFERA CENTRAL
-========================================================= */
-
-#planetWrap{
-    position:absolute;
-
-    left:50%;
-    top:47%;
-
-    transform:translate(-50%,-50%);
-
-    width:min(340px,62vw);
-    aspect-ratio:1;
+    z-index:100;
 
     display:flex;
+
     justify-content:center;
     align-items:center;
-}
 
-#planetGlow{
-    position:absolute;
-    inset:-30%;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,190,0,.25),
-            rgba(255,157,0,.08) 38%,
-            transparent 68%
-        );
-
-    filter:blur(18px);
-
-    animation:planetGlow 3s ease-in-out infinite alternate;
-}
-
-@keyframes planetGlow{
-    from{transform:scale(.9);opacity:.65;}
-    to{transform:scale(1.12);opacity:1;}
-}
-
-#planet{
-    position:relative;
-
-    width:65%;
-    aspect-ratio:1;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle at 32% 25%,
-            #fff8bb 0%,
-            #ffd946 11%,
-            #e99b00 34%,
-            #8b4700 63%,
-            #351800 100%
-        );
-
-    box-shadow:
-        inset -35px -28px 45px rgba(20,5,0,.6),
-        inset 20px 16px 30px rgba(255,255,200,.3),
-        0 0 18px #ffd52f,
-        0 0 55px rgba(255,174,0,.75),
-        0 0 110px rgba(255,126,0,.35);
-
-    animation:planetFloat 5s ease-in-out infinite;
-}
-
-@keyframes planetFloat{
-    0%,100%{
-        transform:translateY(0) rotate(-2deg);
-    }
-    50%{
-        transform:translateY(-12px) rotate(2deg);
-    }
-}
-
-/* detalles planeta */
-
-.planet-flower{
-    position:absolute;
-    font-size:34px;
-    filter:drop-shadow(0 3px 3px rgba(0,0,0,.4));
-}
-
-.pf1{left:18%;top:20%;}
-.pf2{right:15%;top:28%;}
-.pf3{left:39%;bottom:13%;}
-.pf4{left:10%;bottom:29%;font-size:27px;}
-.pf5{right:8%;bottom:22%;font-size:28px;}
-
-/* anillos */
-
-.orbit{
-    position:absolute;
-
-    width:120%;
-    height:32%;
-
-    left:-10%;
-    top:34%;
-
-    border:4px solid rgba(255,220,70,.8);
-    border-radius:50%;
-
-    transform:rotate(-10deg);
-
-    box-shadow:
-        0 0 10px #ffd21f,
-        0 0 30px #ff9d00;
-
-    animation:orbitPulse 3s ease-in-out infinite alternate;
-}
-
-.orbit.o2{
-    width:140%;
-    left:-20%;
-    top:36%;
-
-    border-width:2px;
-    transform:rotate(8deg);
-
-    opacity:.65;
-}
-
-@keyframes orbitPulse{
-    from{filter:brightness(.8);}
-    to{filter:brightness(1.6);}
-}
-
-/* =========================================================
-   OBJETOS FLOTANTES
-========================================================= */
-
-.float-item{
-    position:absolute;
-
-    transform:translate(-50%,-50%);
+    padding:25px;
 
     text-align:center;
 
-    cursor:pointer;
+    background:
 
-    user-select:none;
+        radial-gradient(
+            circle at 50% 42%,
+            rgba(123,82,0,.55) 0%,
+            rgba(59,36,0,.34) 22%,
+            rgba(14,8,2,.94) 48%,
+            #000 78%
+        );
 
     transition:
-        transform .25s ease,
-        filter .25s ease;
-
-    animation:floatObject var(--speed) ease-in-out infinite;
+        opacity .9s ease,
+        visibility .9s ease;
 }
 
-.float-item:hover{
-    transform:
-        translate(-50%,-50%)
-        scale(1.18);
+#intro.hidden{
 
-    filter:
-        drop-shadow(0 0 14px #ffd32f);
-}
+    opacity:0;
 
-@keyframes floatObject{
-    0%,100%{
-        margin-top:0;
-    }
-    50%{
-        margin-top:-14px;
-    }
-}
-
-.icon{
-    font-size:clamp(35px,5vw,62px);
-    display:block;
-}
-
-.label{
-    display:block;
-
-    margin-top:6px;
-
-    color:#fff0b5;
-    font-family:Arial,sans-serif;
-    font-size:clamp(11px,1.4vw,15px);
-    font-weight:bold;
-
-    text-shadow:
-        0 2px 5px #000,
-        0 0 8px #000;
-}
-
-/* posiciones */
-
-#flowers1{
-    left:14%;
-    top:65%;
-    --speed:4.3s;
-}
-
-#flowers2{
-    left:83%;
-    top:67%;
-    --speed:5s;
-}
-
-#flowers3{
-    left:25%;
-    top:35%;
-    --speed:4.8s;
-}
-
-#cat{
-    left:77%;
-    top:28%;
-    --speed:4s;
-}
-
-#chef{
-    left:12%;
-    top:27%;
-    --speed:5.2s;
-}
-
-#engineer{
-    left:88%;
-    top:43%;
-    --speed:4.5s;
-}
-
-#heartItem{
-    left:28%;
-    top:75%;
-    --speed:4.7s;
-}
-
-/* =========================================================
-   MENSAJES FLOTANTES
-========================================================= */
-
-.words{
-    position:absolute;
-
-    color:#fff6d7;
-
-    font-size:clamp(12px,1.5vw,18px);
-
-    text-shadow:
-        0 0 7px #000,
-        0 0 12px #ffae00;
+    visibility:hidden;
 
     pointer-events:none;
-
-    opacity:.88;
-
-    animation:wordFloat 5s ease-in-out infinite;
 }
 
-@keyframes wordFloat{
+.introBox{
+
+    width:min(800px,95vw);
+
+    animation:introAppear 1.4s ease;
+}
+
+@keyframes introAppear{
+
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+
+.introFlower{
+
+    font-size:72px;
+
+    margin-bottom:10px;
+
+    filter:
+        drop-shadow(0 0 15px #ffc400)
+        drop-shadow(0 0 40px #ffae00);
+
+    animation:flowerFloat 3s ease-in-out infinite;
+}
+
+@keyframes flowerFloat{
+
     0%,100%{
         transform:translateY(0);
-        opacity:.55;
     }
 
     50%{
         transform:translateY(-10px);
-        opacity:1;
     }
 }
 
-.w1{left:6%;top:48%;}
-.w2{left:19%;top:56%;}
-.w3{right:8%;top:57%;}
-.w4{right:18%;top:77%;}
-.w5{left:5%;top:82%;}
-.w6{left:38%;top:82%;}
 
-/* =========================================================
-   INTERFAZ
-========================================================= */
+.introTitle{
 
-#topTitle{
-    position:absolute;
-    left:50%;
-    top:20px;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
-    transform:translateX(-50%);
+    font-size:clamp(
+        48px,
+        8vw,
+        86px
+    );
 
-    z-index:20;
+    color:#ffe56b;
 
-    padding:10px 20px;
+    text-shadow:
+        0 0 10px #ffc400,
+        0 0 28px rgba(255,190,0,.7),
+        0 0 60px rgba(255,170,0,.35);
 
-    border:1px solid rgba(255,210,40,.6);
+    margin-bottom:25px;
+}
+
+
+.introText{
+
+    font-family:
+        Georgia,
+        serif;
+
+    color:#fff5da;
+
+    font-size:clamp(
+        18px,
+        2.3vw,
+        24px
+    );
+
+    line-height:1.55;
+
+    margin-bottom:22px;
+}
+
+
+.introQuote{
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-style:italic;
+
+    color:#ffd84c;
+
+    font-size:clamp(
+        16px,
+        2vw,
+        21px
+    );
+
+    margin-bottom:28px;
+}
+
+
+#enterButton{
+
+    border:1px solid #fff3a8;
+
+    outline:none;
+
     border-radius:999px;
 
-    background:rgba(15,10,0,.72);
-    backdrop-filter:blur(6px);
+    padding:
+        17px
+        34px;
 
-    color:#ffe166;
+    font-size:clamp(
+        16px,
+        2vw,
+        20px
+    );
 
-    font-family:Arial,sans-serif;
-    font-weight:bold;
+    font-weight:900;
 
-    white-space:nowrap;
-}
+    color:#271900;
 
-#hint{
-    position:absolute;
-
-    left:50%;
-    bottom:23px;
-
-    transform:translateX(-50%);
-
-    z-index:20;
-
-    color:#cabd91;
-    font-family:Arial,sans-serif;
-    font-size:13px;
-
-    text-align:center;
-}
-
-/* =========================================================
-   MODAL
-========================================================= */
-
-#modal{
-    position:fixed;
-    inset:0;
-
-    z-index:2000;
-
-    display:none;
-
-    justify-content:center;
-    align-items:center;
-
-    padding:20px;
-
-    background:rgba(0,0,0,.78);
-    backdrop-filter:blur(8px);
-}
-
-#modal.open{
-    display:flex;
-    animation:modalFade .3s ease;
-}
-
-@keyframes modalFade{
-    from{opacity:0;}
-    to{opacity:1;}
-}
-
-.modal-card{
-    position:relative;
-
-    width:min(520px,92vw);
-
-    padding:40px 30px;
-
-    text-align:center;
-
-    border:1px solid #e7b92c;
-    border-radius:28px;
+    cursor:pointer;
 
     background:
-        radial-gradient(
-            circle at top,
-            #352300,
-            #100b02 60%,
-            #050300
+        linear-gradient(
+            180deg,
+            #ffe979,
+            #ffc400
         );
 
     box-shadow:
-        0 0 35px rgba(255,184,0,.3);
+
+        0 0 12px rgba(255,220,60,.9),
+
+        0 0 35px rgba(255,188,0,.45);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
 }
 
-.modal-emoji{
-    font-size:75px;
+#enterButton:hover{
+
+    transform:scale(1.05);
+
+    box-shadow:
+
+        0 0 15px #ffe873,
+
+        0 0 45px rgba(255,188,0,.7);
 }
 
-#modalTitle{
+#enterButton:active{
+
+    transform:scale(.97);
+}
+
+
+.madeFor{
+
     margin-top:15px;
 
-    color:#ffe065;
+    font-size:13px;
 
-    font-size:30px;
+    color:#d8b84c;
+
+    opacity:.8;
 }
 
-#modalText{
-    margin-top:18px;
-
-    color:#fff1cf;
-
-    font-size:19px;
-    line-height:1.55;
-}
-
-#closeModal{
-    margin-top:28px;
-
-    padding:13px 25px;
-
-    border:0;
-    border-radius:999px;
-
-    background:#ffd22f;
-    color:#201400;
-
-    font-size:16px;
-    font-weight:bold;
-
-    cursor:pointer;
-}
 
 /* =========================================================
-   SORPRESA
+   BIG BANG
 ========================================================= */
 
-#secret{
-    position:absolute;
+#bigBang{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:80;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    background:
+
+        radial-gradient(
+            circle,
+            white 0%,
+            #fff9b1 5%,
+            #ffd51e 12%,
+            rgba(255,161,0,.8) 23%,
+            rgba(255,136,0,.2) 42%,
+            transparent 70%
+        );
+}
+
+
+#bigBang.active{
+
+    animation:bigBangExplosion 2.5s ease-out forwards;
+}
+
+
+@keyframes bigBangExplosion{
+
+    0%{
+
+        opacity:1;
+
+        transform:scale(.02);
+    }
+
+    20%{
+
+        opacity:1;
+
+        transform:scale(.18);
+    }
+
+    52%{
+
+        opacity:.95;
+
+        transform:scale(1.4);
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:scale(4);
+    }
+}
+
+
+/* =========================================================
+   TEXTO BIG BANG
+========================================================= */
+
+#bigBangText{
+
+    position:fixed;
+
+    z-index:90;
 
     left:50%;
     top:50%;
 
-    transform:translate(-50%,-50%) scale(0);
+    transform:
+        translate(-50%,-50%)
+        scale(.3);
 
-    z-index:50;
-
-    width:min(650px,90vw);
-
-    padding:40px;
-
-    text-align:center;
-
-    border:1px solid #ffe066;
-    border-radius:30px;
-
-    background:rgba(10,6,0,.93);
-
-    box-shadow:
-        0 0 30px #ffb700,
-        0 0 100px rgba(255,166,0,.3);
-
-    transition:transform .6s cubic-bezier(.2,1.5,.4,1);
-}
-
-#secret.show{
-    transform:translate(-50%,-50%) scale(1);
-}
-
-#secret h2{
-    color:#ffe166;
-    font-size:clamp(35px,6vw,65px);
-}
-
-#secret p{
-    margin-top:20px;
-    color:#fff1d0;
-    line-height:1.6;
-    font-size:20px;
-}
-
-#secret button{
-    margin-top:25px;
-    border:0;
-    border-radius:999px;
-
-    padding:14px 25px;
-
-    background:#ffd22f;
-    color:#211300;
-
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* =========================================================
-   CORAZONES DE SORPRESA
-========================================================= */
-
-.love-particle{
-    position:fixed;
-    z-index:1900;
+    opacity:0;
 
     pointer-events:none;
 
-    font-size:25px;
+    text-align:center;
 
-    animation:loveExplosion 2.4s ease-out forwards;
+    font-family:
+        Georgia,
+        serif;
+
+    font-weight:900;
+
+    font-size:clamp(
+        35px,
+        7vw,
+        80px
+    );
+
+    color:#fff3a1;
+
+    text-shadow:
+        0 0 20px #ffc400,
+        0 0 60px #ff9d00;
 }
 
-@keyframes loveExplosion{
 
-    from{
+#bigBangText.active{
+
+    animation:
+        bangWords
+        2.7s
+        ease-out
+        forwards;
+}
+
+
+@keyframes bangWords{
+
+    0%{
+
+        opacity:0;
+
         transform:
             translate(-50%,-50%)
-            translate(0,0)
-            scale(.5);
+            scale(.2);
+    }
+
+    30%{
+
+        opacity:1;
+
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+    }
+
+    70%{
 
         opacity:1;
     }
 
-    to{
-        transform:
-            translate(-50%,-50%)
-            translate(var(--lx),var(--ly))
-            rotate(var(--rot))
-            scale(1.4);
+    100%{
 
         opacity:0;
+
+        transform:
+            translate(-50%,-50%)
+            scale(1.35);
     }
 }
 
+
+#bigBangText small{
+
+    display:block;
+
+    margin-top:8px;
+
+    font-size:.32em;
+
+    color:#ffe97d;
+}
+
+
 /* =========================================================
-   MÓVIL
+   HUD
 ========================================================= */
 
-@media(max-width:700px){
+#hud{
 
-    .cover-content h1{
-        font-size:52px;
+    position:fixed;
+
+    inset:0;
+
+    z-index:20;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    transition:opacity 1.5s ease;
+}
+
+
+#hud.visible{
+
+    opacity:1;
+}
+
+
+#topLabel{
+
+    position:absolute;
+
+    top:
+        max(
+            18px,
+            env(safe-area-inset-top)
+        );
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    padding:
+        10px
+        22px;
+
+    border-radius:999px;
+
+    border:
+        1px
+        solid
+        rgba(255,220,50,.7);
+
+    background:
+        rgba(15,10,2,.72);
+
+    backdrop-filter:
+        blur(8px);
+
+    color:#ffe36d;
+
+    font-weight:800;
+
+    white-space:nowrap;
+
+    box-shadow:
+        0 0 20px
+        rgba(255,193,0,.13);
+}
+
+
+#instructions{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:
+        max(
+            16px,
+            env(safe-area-inset-bottom)
+        );
+
+    transform:translateX(-50%);
+
+    text-align:center;
+
+    color:#ffe8a0;
+
+    font-size:12px;
+
+    width:min(95%,800px);
+
+    text-shadow:
+        0 2px 6px #000;
+}
+
+
+#musicButton{
+
+    margin-top:8px;
+
+    pointer-events:auto;
+
+    border:
+        1px
+        solid
+        rgba(255,222,84,.75);
+
+    background:
+        rgba(20,14,5,.82);
+
+    color:#ffe16a;
+
+    padding:
+        9px
+        16px;
+
+    border-radius:999px;
+
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   MENSAJES SORPRESA
+========================================================= */
+
+#surprise{
+
+    position:fixed;
+
+    z-index:50;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.8);
+
+    width:min(
+        680px,
+        90vw
+    );
+
+    padding:
+        24px;
+
+    text-align:center;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-weight:bold;
+
+    font-size:
+        clamp(
+            20px,
+            4vw,
+            34px
+        );
+
+    color:#ffe682;
+
+    text-shadow:
+        0 0 15px #000;
+
+    background:
+        rgba(12,7,1,.82);
+
+    border:
+        1px solid #dcae21;
+
+    border-radius:24px;
+
+    box-shadow:
+        0 0 45px
+        rgba(255,183,0,.22);
+
+    backdrop-filter:
+        blur(10px);
+
+    opacity:0;
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   CARTA FINAL
+========================================================= */
+
+#letter{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:120;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+    background:
+        rgba(0,0,0,.87);
+
+    backdrop-filter:
+        blur(10px);
+}
+
+
+#letter.show{
+
+    display:flex;
+
+    animation:
+        letterBackground
+        .6s ease;
+}
+
+
+@keyframes letterBackground{
+
+    from{
+        opacity:0;
     }
 
-    .sunflower{
-        font-size:55px;
+    to{
+        opacity:1;
+    }
+}
+
+
+.letterPaper{
+
+    width:
+        min(
+            570px,
+            94vw
+        );
+
+    max-height:90vh;
+
+    overflow:auto;
+
+    padding:
+        30px;
+
+    text-align:center;
+
+    border-radius:28px;
+
+    border:
+        1px
+        solid
+        #ffe06c;
+
+    background:
+
+        radial-gradient(
+            circle at top,
+            rgba(98,65,5,.45),
+            transparent 38%
+        ),
+
+        linear-gradient(
+            145deg,
+            #251805,
+            #080605
+        );
+
+    box-shadow:
+
+        0 0 20px
+        rgba(255,214,70,.25),
+
+        0 0 70px
+        rgba(255,174,0,.18);
+
+    animation:
+        letterAppear
+        .7s ease;
+}
+
+
+@keyframes letterAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(30px)
+            scale(.9);
     }
 
-    .intro{
+    to{
+
+        opacity:1;
+
+        transform:none;
+    }
+}
+
+
+.letterIcons{
+
+    font-size:50px;
+
+    margin-bottom:10px;
+}
+
+
+.letterPaper h2{
+
+    font-family:
+        Georgia,
+        serif;
+
+    color:#ffe372;
+
+    font-size:34px;
+
+    margin-bottom:20px;
+}
+
+
+.letterPaper p{
+
+    font-family:
+        Georgia,
+        serif;
+
+    color:#fff4d6;
+
+    font-size:17px;
+
+    line-height:1.65;
+}
+
+
+#closeLetter{
+
+    margin-top:25px;
+
+    border:1px solid #fff0a2;
+
+    border-radius:999px;
+
+    padding:
+        13px
+        23px;
+
+    font-weight:900;
+
+    background:
+        linear-gradient(
+            #ffe875,
+            #eab400
+        );
+
+    color:#2b1b00;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   CORAZÓN FUGAZ
+========================================================= */
+
+.flyingHeart{
+
+    position:fixed;
+
+    z-index:35;
+
+    left:-80px;
+
+    top:20%;
+
+    font-size:34px;
+
+    pointer-events:none;
+
+    filter:
+        drop-shadow(
+            0 0 12px
+            #ffc400
+        );
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media(max-width:650px){
+
+    .introFlower{
+        font-size:58px;
+    }
+
+    .introText{
         font-size:17px;
     }
 
-    #enterBtn{
-        font-size:17px;
-        padding:16px 25px;
-    }
-
-    #planetWrap{
-        top:47%;
-        width:270px;
-    }
-
-    .icon{
-        font-size:40px;
-    }
-
-    .label{
-        font-size:10px;
-    }
-
-    #flowers1{
-        left:13%;
-        top:69%;
-    }
-
-    #flowers2{
-        left:86%;
-        top:70%;
-    }
-
-    #flowers3{
-        left:21%;
-        top:38%;
-    }
-
-    #cat{
-        left:81%;
-        top:30%;
-    }
-
-    #chef{
-        left:12%;
-        top:24%;
-    }
-
-    #engineer{
-        left:89%;
-        top:48%;
-    }
-
-    #heartItem{
-        left:27%;
-        top:80%;
-    }
-
-    .words{
-        font-size:10px;
-    }
-
-    #topTitle{
+    #topLabel{
         font-size:12px;
     }
+
+    #instructions{
+        font-size:10px;
+    }
+
 }
 
 </style>
 </head>
 
+
 <body>
 
+
 <!-- ======================================================
-     PORTADA
+     UNIVERSO
 ====================================================== -->
 
-<section id="cover">
+<canvas id="universe"></canvas>
 
-    <div class="cover-content">
 
-        <span class="sunflower">🌻</span>
+<!-- ======================================================
+     BIG BANG
+====================================================== -->
 
-        <h1>
-            Para mi Pollo
-            <span class="heart">💛</span>
-        </h1>
+<div id="bigBang"></div>
 
-        <div class="intro">
-            Belén, preparé un pequeño universo para ti.<br>
-            Entra, recórrelo y descubre las sorpresas
-            que dejé entre las estrellas.
-        </div>
+<div id="bigBangText">
 
-        <div class="quote">
-            “De todos los lugares del universo,
-            siempre te elegiría a ti.”
-        </div>
+    BELÉN 💛
 
-        <button id="enterBtn" type="button">
-            Iniciar nuestro universo ✨
+    <small>
+        bienvenida a nuestro universo
+    </small>
+
+</div>
+
+
+<!-- ======================================================
+     INTERFAZ UNIVERSO
+====================================================== -->
+
+<div id="hud">
+
+    <div id="topLabel">
+        🌻 Belén • mi Pollo • nuestro universo 💛 🐱
+    </div>
+
+    <div id="instructions">
+
+        Arrastra para recorrer nuestro universo 360° ✨
+        · rueda o pellizca para acercarte
+
+        <br>
+
+        <button id="musicButton">
+            ♫ Bed Chem — Sabrina Carpenter
         </button>
 
-        <div class="small">
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     INICIO
+====================================================== -->
+
+<section id="intro">
+
+    <div class="introBox">
+
+        <div class="introFlower">
+            🌻
+        </div>
+
+        <h1 class="introTitle">
+            Para mi Pollo 💛
+        </h1>
+
+        <p class="introText">
+
+            Belén, preparé un pequeño universo para ti.
+
+            <br>
+
+            Entra, recórrelo y descubre las sorpresas
+            que dejé entre las estrellas.
+
+        </p>
+
+        <p class="introQuote">
+
+            “De todos los lugares del universo,
+            siempre te elegiría a ti.”
+
+        </p>
+
+        <button
+            type="button"
+            id="enterButton"
+        >
+
+            Iniciar nuestro universo ✨
+
+        </button>
+
+        <div class="madeFor">
+
             Hecho especialmente para ti 🌻
+
         </div>
 
     </div>
@@ -1097,822 +1003,2891 @@ button{
 
 
 <!-- ======================================================
-     BIG BANG
+     MENSAJE SORPRESA
 ====================================================== -->
 
-<div id="bigbang">
-
-    <div id="flash"></div>
-
-    <div class="ring"></div>
-    <div class="ring r2"></div>
-    <div class="ring r3"></div>
-
-    <div id="bangParticles"></div>
-
-</div>
+<div id="surprise"></div>
 
 
 <!-- ======================================================
-     UNIVERSO
+     CARTA
 ====================================================== -->
 
-<main id="universe">
+<section id="letter">
 
-    <div id="stars"></div>
+    <div class="letterPaper">
 
-    <div id="goldFloor"></div>
+        <div class="letterIcons">
 
-    <div id="dustContainer"></div>
+            🐱 🌻 🐱
 
-
-    <div id="topTitle">
-        🌻 Belén • mi Pollo • mi universo 💛
-    </div>
-
-
-    <!-- MENSAJES -->
-
-    <span class="words w1">
-        Mi persona favorita 💛
-    </span>
-
-    <span class="words w2">
-        Siempre tú ✨
-    </span>
-
-    <span class="words w3">
-        Brillas como el sol ☀️
-    </span>
-
-    <span class="words w4">
-        Para ti 🌻
-    </span>
-
-    <span class="words w5">
-        Mi lugar bonito
-    </span>
-
-    <span class="words w6">
-        Aquí guardé un pedacito de nosotros ✨
-    </span>
-
-
-    <!-- PLANETA -->
-
-    <div id="planetWrap">
-
-        <div id="planetGlow"></div>
-
-        <div id="planet">
-
-            <span class="planet-flower pf1">🌻</span>
-            <span class="planet-flower pf2">🌼</span>
-            <span class="planet-flower pf3">🌻</span>
-            <span class="planet-flower pf4">🌼</span>
-            <span class="planet-flower pf5">🌻</span>
-
-            <div class="orbit"></div>
-            <div class="orbit o2"></div>
-
-        </div>
-
-    </div>
-
-
-    <!-- FLORES -->
-
-    <div
-        class="float-item"
-        id="flowers1"
-        data-title="Flores para mi Pollo 🌻"
-        data-emoji="💐"
-        data-message="Un ramo virtual porque hasta un universo entero se queda pequeño cuando quiero hacerte sonreír."
-    >
-        <span class="icon">💐</span>
-        <span class="label">Para mi Pollo</span>
-    </div>
-
-
-    <div
-        class="float-item"
-        id="flowers2"
-        data-title="Unas amarillas para ti 💛"
-        data-emoji="🌻"
-        data-message="Entre todas estas estrellas también tenía que dejarte flores amarillas. Porque este lugar está hecho pensando en ti."
-    >
-        <span class="icon">🌻</span>
-        <span class="label">Brillas bonito</span>
-    </div>
-
-
-    <div
-        class="float-item"
-        id="flowers3"
-        data-title="Otro pequeño detalle 🌼"
-        data-emoji="🌼"
-        data-message="No necesitas una fecha especial para recibir flores. A veces simplemente quiero recordarte que eres importante para mí."
-    >
-        <span class="icon">🌼</span>
-        <span class="label">Una flor para ti</span>
-    </div>
-
-
-    <!-- GATITO -->
-
-    <div
-        class="float-item"
-        id="cat"
-        data-title="Un guardián del universo 🐱"
-        data-emoji="🐱"
-        data-message="Obviamente nuestro universo necesitaba un gatito. Su trabajo oficial es cuidar tus flores y vigilar que siempre haya algo bonito esperándote aquí."
-    >
-        <span class="icon">🐱</span>
-        <span class="label">Tu guardián</span>
-    </div>
-
-
-    <!-- CHEF -->
-
-    <div
-        class="float-item"
-        id="chef"
-        data-title="Mi chef favorita 👩‍🍳"
-        data-emoji="👩‍🍳"
-        data-message="Hasta en mi pequeño universo tenía que existir una referencia a esa parte de ti. Si cocinas algo rico, yo me ofrezco oficialmente como catador."
-    >
-        <span class="icon">👩‍🍳</span>
-        <span class="label">Mi chef</span>
-    </div>
-
-
-    <!-- INGENIERÍA -->
-
-    <div
-        class="float-item"
-        id="engineer"
-        data-title="Ingeniería del corazón 👷‍♀️"
-        data-emoji="👷‍♀️"
-        data-message="Revisé los cálculos: cimentación firme, estructura estable y una carga enorme de cariño. Esta obra queda aprobada. 🏗️💛"
-    >
-        <span class="icon">👷‍♀️</span>
-        <span class="label">Ingeniera de mi universo</span>
-    </div>
-
-
-    <!-- CORAZÓN / SORPRESA -->
-
-    <div
-        class="float-item"
-        id="heartItem"
-    >
-        <span class="icon">💛</span>
-        <span class="label">No toques aquí 👀</span>
-    </div>
-
-
-    <div id="hint">
-        ✨ Toca las flores, el gatito y las sorpresas ✨
-    </div>
-
-
-    <!-- SORPRESA FINAL -->
-
-    <div id="secret">
-
-        <div style="font-size:65px;">
-            🌻💛🌻
         </div>
 
         <h2>
-            Belén
+
+            Para mi Pollo 💛
+
         </h2>
 
         <p>
-            Si encontraste esto, significa que sí hiciste caso
-            cuando decía que no tocaras. 😂
+
+            Belén, te amo.
+
             <br><br>
 
-            Este pequeño universo no pretende ser perfecto.
-            Solo quería construir algo diferente para ti:
-            flores, estrellas, gatitos, pequeños detalles
-            y referencias que me hacen pensar en ti.
+            No necesitaba encontrar
+            un universo perfecto;
+            solo necesitaba encontrarte a ti.
+
             <br><br>
 
-            Y si alguna vez te preguntas cuánto te quiero...
-            intenté llenar un universo entero
-            y todavía me faltó espacio. ✨
+            Gracias por hacer más bonitos mis días.
+
+            Estas flores amarillas son
+            una pequeña forma de recordarte
+            lo especial que eres para mí.
+
+            <br><br>
+
+            Y si alguna vez te preguntas
+            <strong>cuánto te amo</strong>…
+
+            mira todo este universo.
+
+            Cada destello,
+            cada flor,
+            cada estrella
+            y cada rincón
+
+            todavía se queda corto
+            para explicártelo.
+
+            💛
+
+            <br><br>
+
+            Y entre tantos caminos,
+            planos,
+            recetas,
+            proyectos
+            y casualidades…
+
+            mi lugar favorito
+            sigue siendo contigo.
+
+            ✨
+
         </p>
 
-        <button id="closeSecret">
+        <button id="closeLetter">
+
             Seguir explorando 🌻
+
         </button>
 
     </div>
 
-</main>
+</section>
 
 
 <!-- ======================================================
-     MODAL
+     AUDIO
+
+     Si GitHub/Spotify bloquea el preview,
+     el botón seguirá funcionando como enlace.
 ====================================================== -->
 
-<div id="modal">
+<audio
+    id="song"
+    preload="none"
+>
 
-    <div class="modal-card">
+    <source
+        src="https://p.scdn.co/mp3-preview/5e1e4717e7687e9cce43d7f18cf9d6aa2e437cf6.mp3"
+        type="audio/mpeg"
+    >
 
-        <div
-            class="modal-emoji"
-            id="modalEmoji"
-        >
-            🌻
-        </div>
-
-        <h2 id="modalTitle">
-            Para Belén
-        </h2>
-
-        <p id="modalText"></p>
-
-        <button id="closeModal">
-            Volver al universo ✨
-        </button>
-
-    </div>
-
-</div>
+</audio>
 
 
 <script>
 
+"use strict";
+
+
 /* =========================================================
-   REFERENCIAS
+   ELEMENTOS
 ========================================================= */
 
-const cover =
-    document.getElementById("cover");
-
-const enterBtn =
-    document.getElementById("enterBtn");
-
-const bigbang =
-    document.getElementById("bigbang");
-
-const universe =
+const canvas =
     document.getElementById("universe");
 
-const bangParticles =
-    document.getElementById("bangParticles");
+const ctx =
+    canvas.getContext(
+        "2d",
+        {
+            alpha:false
+        }
+    );
 
-const stars =
-    document.getElementById("stars");
 
-const dustContainer =
-    document.getElementById("dustContainer");
+const intro =
+    document.getElementById("intro");
 
-const modal =
-    document.getElementById("modal");
+const enterButton =
+    document.getElementById("enterButton");
 
-const modalEmoji =
-    document.getElementById("modalEmoji");
+const hud =
+    document.getElementById("hud");
 
-const modalTitle =
-    document.getElementById("modalTitle");
+const bigBang =
+    document.getElementById("bigBang");
 
-const modalText =
-    document.getElementById("modalText");
+const bigBangText =
+    document.getElementById("bigBangText");
 
-const closeModal =
-    document.getElementById("closeModal");
+const surprise =
+    document.getElementById("surprise");
 
-const heartItem =
-    document.getElementById("heartItem");
+const letter =
+    document.getElementById("letter");
 
-const secret =
-    document.getElementById("secret");
+const closeLetter =
+    document.getElementById("closeLetter");
 
-const closeSecret =
-    document.getElementById("closeSecret");
+const song =
+    document.getElementById("song");
+
+const musicButton =
+    document.getElementById("musicButton");
 
 
 /* =========================================================
-   CREAR ESTRELLAS
-   Cantidad moderada = menos lag
+   TAMAÑO
 ========================================================= */
 
-function createStars(){
+let W = 0;
 
-    const total =
-        window.innerWidth < 700 ? 90 : 150;
+let H = 0;
 
-    const fragment =
-        document.createDocumentFragment();
+let CX = 0;
 
-    for(let i = 0; i < total; i++){
+let CY = 0;
 
-        const star =
-            document.createElement("span");
+let DPR = 1;
 
-        star.className =
-            "star";
 
-        star.style.left =
-            Math.random() * 100 + "%";
+function resize(){
 
-        star.style.top =
-            Math.random() * 100 + "%";
+    W =
+        window.innerWidth;
 
-        const size =
-            Math.random() * 2.2 + .7;
+    H =
+        window.innerHeight;
 
-        star.style.width =
-            size + "px";
+    CX =
+        W / 2;
 
-        star.style.height =
-            size + "px";
+    CY =
+        H / 2;
 
-        star.style.setProperty(
-            "--time",
-            (Math.random() * 3 + 1.8) + "s"
+
+    /*
+       LIMITAMOS DPR.
+
+       Esto es MUY importante
+       para que no tenga lag
+       en celulares con pantallas
+       de alta resolución.
+    */
+
+    DPR =
+        Math.min(
+            window.devicePixelRatio || 1,
+            1.25
         );
 
-        star.style.animationDelay =
-            Math.random() * 4 + "s";
 
-        fragment.appendChild(star);
+    canvas.width =
+        Math.round(
+            W * DPR
+        );
+
+    canvas.height =
+        Math.round(
+            H * DPR
+        );
+
+
+    canvas.style.width =
+        W + "px";
+
+    canvas.style.height =
+        H + "px";
+
+
+    ctx.setTransform(
+        DPR,
+        0,
+        0,
+        DPR,
+        0,
+        0
+    );
+
+}
+
+
+window.addEventListener(
+    "resize",
+    resize,
+    {
+        passive:true
     }
+);
 
-    stars.appendChild(fragment);
+
+resize();
+
+
+/* =========================================================
+   UTILIDADES
+========================================================= */
+
+const TAU =
+    Math.PI * 2;
+
+
+function random(
+    min,
+    max
+){
+
+    return (
+        min +
+        Math.random() *
+        (max-min)
+    );
+
 }
 
 
 /* =========================================================
-   POLVO DORADO
+   CÁMARA 360°
 ========================================================= */
 
-function createDust(){
+let yaw = 0;
 
-    const total =
-        window.innerWidth < 700 ? 90 : 180;
+let pitch = -0.16;
 
-    const fragment =
-        document.createDocumentFragment();
+let zoom = 1;
 
-    for(let i = 0; i < total; i++){
 
-        const dust =
-            document.createElement("span");
+let targetYaw = 0;
 
-        dust.className =
-            "dust";
+let targetPitch = -0.16;
 
-        dust.style.left =
-            Math.random() * 100 + "%";
+let targetZoom = 1;
 
-        dust.style.top =
-            (55 + Math.random() * 45) + "%";
 
-        const size =
-            Math.random() * 2.5 + 1;
+let dragging = false;
 
-        dust.style.width =
-            size + "px";
+let previousX = 0;
 
-        dust.style.height =
-            size + "px";
+let previousY = 0;
 
-        dust.style.setProperty(
-            "--d",
-            (Math.random() * 3 + 1.5) + "s"
-        );
 
-        dust.style.animationDelay =
-            Math.random() * 3 + "s";
+let pinchDistance = 0;
 
-        fragment.appendChild(dust);
-    }
 
-    dustContainer.appendChild(fragment);
+/* =========================================================
+   ESTADO
+========================================================= */
+
+let started = false;
+
+let startTime = 0;
+
+let autoRotate = true;
+
+let letterOpened = false;
+
+
+/* =========================================================
+   ESTRELLAS
+
+   Son posiciones esféricas.
+   La cámara puede girar infinitamente.
+========================================================= */
+
+const stars = [];
+
+
+for(
+    let i = 0;
+    i < 360;
+    i++
+){
+
+    stars.push({
+
+        angle:
+            random(
+                0,
+                TAU
+            ),
+
+        elevation:
+            random(
+                -.65,
+                .7
+            ),
+
+        radius:
+            random(
+                650,
+                2300
+            ),
+
+        size:
+            random(
+                .5,
+                2.2
+            ),
+
+        alpha:
+            random(
+                .25,
+                1
+            ),
+
+        twinkle:
+            random(
+                0,
+                TAU
+            )
+
+    });
+
 }
 
 
 /* =========================================================
-   BIG BANG
+   POLVO DORADO DEL SUELO
 ========================================================= */
 
-function createBang(){
+const dust = [];
 
-    bangParticles.innerHTML = "";
 
-    const total =
-        window.innerWidth < 700 ? 55 : 85;
+for(
+    let i = 0;
+    i < 330;
+    i++
+){
 
-    const fragment =
-        document.createDocumentFragment();
+    dust.push({
 
-    const maxDistance =
+        angle:
+            random(
+                0,
+                TAU
+            ),
+
+        radius:
+            Math.sqrt(
+                Math.random()
+            ) * 1900,
+
+        height:
+            random(
+                -100,
+                40
+            ),
+
+        size:
+            random(
+                .7,
+                2.8
+            ),
+
+        alpha:
+            random(
+                .2,
+                .9
+            )
+
+    });
+
+}
+
+
+/* =========================================================
+   OBJETOS DEL UNIVERSO
+========================================================= */
+
+const objects = [
+
+    /* FLORES */
+
+    {
+        angle:-2.80,
+        radius:930,
+        y:40,
+        emoji:"🌻",
+        label:"Para mi Pollo",
+        size:72
+    },
+
+    {
+        angle:-2.30,
+        radius:1160,
+        y:110,
+        emoji:"💐",
+        label:"Flores para ti",
+        size:76
+    },
+
+    {
+        angle:-1.85,
+        radius:970,
+        y:80,
+        emoji:"🌹",
+        label:"Mi persona favorita",
+        size:68
+    },
+
+    {
+        angle:-1.40,
+        radius:1250,
+        y:20,
+        emoji:"🌻",
+        label:"Brillas como el sol",
+        size:80
+    },
+
+    {
+        angle:-.95,
+        radius:920,
+        y:140,
+        emoji:"🌼",
+        label:"Siempre tú",
+        size:66
+    },
+
+    /* GATITOS */
+
+    {
+        angle:-.55,
+        radius:1100,
+        y:160,
+        emoji:"🐱",
+        label:"Tu pequeño guardián",
+        size:74
+    },
+
+    {
+        angle:-.18,
+        radius:1350,
+        y:50,
+        emoji:"🐈",
+        label:"Un gatito perdido en nuestro universo",
+        size:74
+    },
+
+    /* INGENIERÍA */
+
+    {
+        angle:.22,
+        radius:1040,
+        y:125,
+        emoji:"👷‍♀️",
+        label:"La ingeniera de mi corazón",
+        size:74
+    },
+
+    {
+        angle:.55,
+        radius:1320,
+        y:30,
+        emoji:"🏗️",
+        label:"Nuestro amor tiene buenos cimientos",
+        size:72
+    },
+
+    {
+        angle:.88,
+        radius:1030,
+        y:155,
+        emoji:"📐",
+        label:"Tú eres mi mejor proyecto",
+        size:66
+    },
+
+    /* CHEF */
+
+    {
+        angle:1.22,
+        radius:1120,
+        y:125,
+        emoji:"👩‍🍳",
+        label:"Mi chef favorita",
+        size:76
+    },
+
+    {
+        angle:1.58,
+        radius:1380,
+        y:30,
+        emoji:"🍰",
+        label:"La receta de mis días bonitos",
+        size:70
+    },
+
+    {
+        angle:1.90,
+        radius:1040,
+        y:120,
+        emoji:"🍳",
+        label:"Chef de mi universo",
+        size:66
+    },
+
+    /* ROMÁNTICOS */
+
+    {
+        angle:2.20,
+        radius:1240,
+        y:70,
+        emoji:"💛",
+        label:"Qué bonito coincidir contigo",
+        size:70
+    },
+
+    {
+        angle:2.55,
+        radius:990,
+        y:160,
+        emoji:"🦋",
+        label:"Mi casualidad favorita",
+        size:70
+    },
+
+    {
+        angle:2.90,
+        radius:1320,
+        y:40,
+        emoji:"✨",
+        label:"Hasta en otra galaxia te encontraría",
+        size:64
+    },
+
+    {
+        angle:3.18,
+        radius:1080,
+        y:115,
+        emoji:"🌷",
+        label:"Gracias por existir",
+        size:70
+    },
+
+    {
+        angle:3.50,
+        radius:1290,
+        y:20,
+        emoji:"🐾",
+        label:"Mi lugar seguro eres tú",
+        size:68
+    },
+
+    {
+        angle:3.85,
+        radius:1030,
+        y:150,
+        emoji:"🌻",
+        label:"Belén 💛",
+        size:78
+    }
+
+];
+
+
+/* =========================================================
+   RAMOS AMARILLOS
+========================================================= */
+
+const bouquets = [];
+
+
+for(
+    let i = 0;
+    i < 24;
+    i++
+){
+
+    bouquets.push({
+
+        angle:
+            (i / 24) *
+            TAU +
+            random(
+                -.08,
+                .08
+            ),
+
+        radius:
+            random(
+                550,
+                1750
+            ),
+
+        y:
+            random(
+                -40,
+                60
+            ),
+
+        size:
+            random(
+                38,
+                68
+            ),
+
+        emoji:
+            Math.random() > .45
+                ? "💐"
+                : "🌻"
+
+    });
+
+}
+
+
+/* =========================================================
+   PROYECCIÓN 3D
+
+   Convierte una posición alrededor del usuario
+   a coordenadas de pantalla.
+========================================================= */
+
+function projectObject(
+    angle,
+    radius,
+    height
+){
+
+    const relativeAngle =
+        angle - yaw;
+
+
+    const cos =
+        Math.cos(
+            relativeAngle
+        );
+
+    const sin =
+        Math.sin(
+            relativeAngle
+        );
+
+
+    /*
+       Profundidad.
+
+       + significa delante.
+    */
+
+    let z =
+        cos *
+        radius;
+
+
+    let x =
+        sin *
+        radius;
+
+
+    /*
+       Elevación vertical
+    */
+
+    let y =
+        height;
+
+
+    /*
+       Rotación pitch
+    */
+
+    const cp =
+        Math.cos(
+            pitch
+        );
+
+    const sp =
+        Math.sin(
+            pitch
+        );
+
+
+    const rotatedY =
+        y * cp -
+        z * sp;
+
+
+    const rotatedZ =
+        y * sp +
+        z * cp;
+
+
+    z =
+        rotatedZ;
+
+
+    if(
+        z < 80
+    ){
+
+        return null;
+
+    }
+
+
+    const focal =
+        Math.min(
+            W,
+            H
+        ) *
+        .92 *
+        zoom;
+
+
+    const scale =
+        focal /
+        z;
+
+
+    return {
+
+        x:
+            CX +
+            x * scale,
+
+        y:
+            CY -
+            rotatedY * scale,
+
+        scale,
+
+        depth:z
+
+    };
+
+}
+
+
+/* =========================================================
+   FONDO
+========================================================= */
+
+function drawBackground(
+    time
+){
+
+    const gradient =
+        ctx.createRadialGradient(
+            CX,
+            CY*.80,
+            0,
+            CX,
+            CY,
+            Math.max(
+                W,
+                H
+            )*.75
+        );
+
+
+    gradient.addColorStop(
+        0,
+        "#130d02"
+    );
+
+    gradient.addColorStop(
+        .32,
+        "#070501"
+    );
+
+    gradient.addColorStop(
+        1,
+        "#000"
+    );
+
+
+    ctx.fillStyle =
+        gradient;
+
+
+    ctx.fillRect(
+        0,
+        0,
+        W,
+        H
+    );
+
+
+    /* ESTRELLAS */
+
+    for(
+        const star
+        of stars
+    ){
+
+        const p =
+            projectObject(
+                star.angle,
+                star.radius,
+                star.elevation *
+                900
+            );
+
+
+        if(
+            !p
+        ){
+            continue;
+        }
+
+
+        if(
+            p.x < -20 ||
+            p.x > W+20 ||
+            p.y < -20 ||
+            p.y > H+20
+        ){
+            continue;
+        }
+
+
+        const pulse =
+            .65 +
+            Math.sin(
+                time*.0018 +
+                star.twinkle
+            )*.35;
+
+
+        ctx.globalAlpha =
+            star.alpha *
+            pulse;
+
+
+        ctx.fillStyle =
+            "#fff7d0";
+
+
+        const s =
+            Math.max(
+                .5,
+                Math.min(
+                    2.6,
+                    star.size *
+                    p.scale *
+                    1.8
+                )
+            );
+
+
+        ctx.beginPath();
+
+        ctx.arc(
+            p.x,
+            p.y,
+            s,
+            0,
+            TAU
+        );
+
+        ctx.fill();
+
+    }
+
+
+    ctx.globalAlpha = 1;
+
+}
+
+
+/* =========================================================
+   ALFOMBRA DE POLVO MÁGICO
+========================================================= */
+
+function drawGoldenCarpet(
+    time
+){
+
+    ctx.save();
+
+
+    ctx.globalCompositeOperation =
+        "lighter";
+
+
+    for(
+        const particle
+        of dust
+    ){
+
+        const p =
+            projectObject(
+                particle.angle,
+                particle.radius,
+                particle.height - 220
+            );
+
+
+        if(
+            !p
+        ){
+            continue;
+        }
+
+
+        if(
+            p.x < -30 ||
+            p.x > W+30 ||
+            p.y < -30 ||
+            p.y > H+30
+        ){
+            continue;
+        }
+
+
+        const pulse =
+            .7 +
+            Math.sin(
+                time*.002 +
+                particle.angle*4
+            )*.3;
+
+
+        ctx.globalAlpha =
+            particle.alpha *
+            pulse;
+
+
+        ctx.fillStyle =
+            "#ffd42a";
+
+
+        const size =
+            Math.max(
+                .6,
+                Math.min(
+                    4,
+                    particle.size *
+                    p.scale *
+                    2
+                )
+            );
+
+
+        ctx.beginPath();
+
+        ctx.arc(
+            p.x,
+            p.y,
+            size,
+            0,
+            TAU
+        );
+
+        ctx.fill();
+
+    }
+
+
+    ctx.restore();
+
+}
+
+
+/* =========================================================
+   ESFERA CENTRAL
+
+   ES LA PARTE PRINCIPAL.
+========================================================= */
+
+function drawCentralSphere(
+    time
+){
+
+    /*
+       La esfera se queda en el centro
+       del universo.
+    */
+
+    const radius =
+        Math.min(
+            W,
+            H
+        ) *
+        .145;
+
+
+    const x =
+        CX;
+
+
+    const y =
+        CY +
+        Math.sin(
+            time*.0008
+        ) * 6;
+
+
+    ctx.save();
+
+
+    /*
+       HALO EXTERIOR
+    */
+
+    const halo =
+        ctx.createRadialGradient(
+            x,
+            y,
+            radius*.3,
+            x,
+            y,
+            radius*2.1
+        );
+
+
+    halo.addColorStop(
+        0,
+        "rgba(255,222,80,.42)"
+    );
+
+    halo.addColorStop(
+        .38,
+        "rgba(255,183,0,.20)"
+    );
+
+    halo.addColorStop(
+        1,
+        "rgba(255,160,0,0)"
+    );
+
+
+    ctx.fillStyle =
+        halo;
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+        x,
+        y,
+        radius*2.1,
+        0,
+        TAU
+    );
+
+    ctx.fill();
+
+
+    /*
+       CUERPO DE CRISTAL DORADO
+    */
+
+    const sphere =
+        ctx.createRadialGradient(
+
+            x-radius*.40,
+            y-radius*.45,
+            radius*.05,
+
+            x,
+            y,
+            radius
+        );
+
+
+    sphere.addColorStop(
+        0,
+        "#fffbd1"
+    );
+
+    sphere.addColorStop(
+        .10,
+        "#ffe66b"
+    );
+
+    sphere.addColorStop(
+        .30,
+        "#e4a713"
+    );
+
+    sphere.addColorStop(
+        .58,
+        "#8a4c05"
+    );
+
+    sphere.addColorStop(
+        .82,
+        "#442003"
+    );
+
+    sphere.addColorStop(
+        1,
+        "#170900"
+    );
+
+
+    ctx.fillStyle =
+        sphere;
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+        x,
+        y,
+        radius,
+        0,
+        TAU
+    );
+
+    ctx.fill();
+
+
+    /*
+       REFLEJO
+    */
+
+    const shine =
+        ctx.createRadialGradient(
+
+            x-radius*.45,
+            y-radius*.48,
+            0,
+
+            x-radius*.30,
+            y-radius*.30,
+            radius*.65
+        );
+
+
+    shine.addColorStop(
+        0,
+        "rgba(255,255,230,.8)"
+    );
+
+    shine.addColorStop(
+        .18,
+        "rgba(255,246,180,.25)"
+    );
+
+    shine.addColorStop(
+        1,
+        "rgba(255,255,255,0)"
+    );
+
+
+    ctx.fillStyle =
+        shine;
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+        x,
+        y,
+        radius*.96,
+        0,
+        TAU
+    );
+
+    ctx.fill();
+
+
+    /*
+       FLORES DENTRO
+    */
+
+    ctx.textAlign =
+        "center";
+
+    ctx.textBaseline =
+        "middle";
+
+
+    const innerFlowers = [
+
+        [
+            -.32,
+            -.25,
+            "🌻",
+            .27
+        ],
+
+        [
+            .26,
+            -.15,
+            "🌼",
+            .22
+        ],
+
+        [
+            -.10,
+            .28,
+            "🌻",
+            .28
+        ],
+
+        [
+            .34,
+            .22,
+            "🌹",
+            .20
+        ],
+
+        [
+            -.42,
+            .23,
+            "🌼",
+            .19
+        ]
+
+    ];
+
+
+    for(
+        const flower
+        of innerFlowers
+    ){
+
+        ctx.font =
+            `${radius*flower[3]}px "Segoe UI Emoji"`;
+
+        ctx.shadowColor =
+            "#ffd22c";
+
+        ctx.shadowBlur =
+            10;
+
+
+        ctx.fillText(
+
+            flower[2],
+
+            x +
+            flower[0] *
+            radius,
+
+            y +
+            flower[1] *
+            radius
+
+        );
+
+    }
+
+
+    /*
+       ANILLOS TIPO SATURNO
+    */
+
+    ctx.globalCompositeOperation =
+        "lighter";
+
+
+    ctx.shadowColor =
+        "#ffd21a";
+
+    ctx.shadowBlur =
+        18;
+
+
+    ctx.lineWidth =
         Math.max(
-            window.innerWidth,
-            window.innerHeight
-        ) * .8;
+            2,
+            radius*.022
+        );
 
-    for(let i = 0; i < total; i++){
 
-        const particle =
-            document.createElement("span");
+    ctx.strokeStyle =
+        "rgba(255,220,52,.95)";
 
-        particle.className =
-            "bang-particle";
+
+    ctx.beginPath();
+
+    ctx.ellipse(
+
+        x,
+
+        y+radius*.08,
+
+        radius*1.72,
+
+        radius*.32,
+
+        -.08,
+
+        0,
+
+        TAU
+
+    );
+
+    ctx.stroke();
+
+
+    ctx.globalAlpha =
+        .55;
+
+
+    ctx.beginPath();
+
+    ctx.ellipse(
+
+        x,
+
+        y+radius*.08,
+
+        radius*1.48,
+
+        radius*.24,
+
+        .10,
+
+        0,
+
+        TAU
+
+    );
+
+    ctx.stroke();
+
+
+    ctx.globalAlpha =
+        .25;
+
+
+    ctx.beginPath();
+
+    ctx.ellipse(
+
+        x,
+
+        y+radius*.08,
+
+        radius*1.95,
+
+        radius*.42,
+
+        .04,
+
+        0,
+
+        TAU
+
+    );
+
+    ctx.stroke();
+
+
+    ctx.restore();
+
+}
+
+
+/* =========================================================
+   RAMOS
+========================================================= */
+
+function drawBouquets(){
+
+    const visible = [];
+
+
+    for(
+        const bouquet
+        of bouquets
+    ){
+
+        const p =
+            projectObject(
+                bouquet.angle,
+                bouquet.radius,
+                bouquet.y - 110
+            );
+
+
+        if(
+            !p
+        ){
+            continue;
+        }
+
+
+        visible.push({
+            bouquet,
+            p
+        });
+
+    }
+
+
+    visible.sort(
+        (a,b)=>
+            b.p.depth -
+            a.p.depth
+    );
+
+
+    for(
+        const item
+        of visible
+    ){
+
+        const bouquet =
+            item.bouquet;
+
+        const p =
+            item.p;
+
+
+        if(
+            p.x < -100 ||
+            p.x > W+100 ||
+            p.y < -100 ||
+            p.y > H+100
+        ){
+            continue;
+        }
+
+
+        const size =
+            Math.max(
+                22,
+                Math.min(
+                    85,
+                    bouquet.size *
+                    p.scale *
+                    1.8
+                )
+            );
+
+
+        ctx.globalAlpha =
+            Math.max(
+                .35,
+                Math.min(
+                    1,
+                    1200 /
+                    p.depth
+                )
+            );
+
+
+        ctx.font =
+            `${size}px "Segoe UI Emoji"`;
+
+
+        ctx.textAlign =
+            "center";
+
+
+        ctx.fillText(
+
+            bouquet.emoji,
+
+            p.x,
+
+            p.y
+
+        );
+
+    }
+
+
+    ctx.globalAlpha =
+        1;
+
+}
+
+
+/* =========================================================
+   OBJETOS + MENSAJES
+========================================================= */
+
+function drawObjects(){
+
+    const visible = [];
+
+
+    for(
+        const object
+        of objects
+    ){
+
+        const p =
+            projectObject(
+                object.angle,
+                object.radius,
+                object.y
+            );
+
+
+        if(
+            !p
+        ){
+            continue;
+        }
+
+
+        visible.push({
+            object,
+            p
+        });
+
+    }
+
+
+    visible.sort(
+        (a,b)=>
+            b.p.depth -
+            a.p.depth
+    );
+
+
+    for(
+        const item
+        of visible
+    ){
+
+        const object =
+            item.object;
+
+        const p =
+            item.p;
+
+
+        if(
+            p.x < -220 ||
+            p.x > W+220 ||
+            p.y < -150 ||
+            p.y > H+150
+        ){
+            continue;
+        }
+
+
+        const size =
+            Math.max(
+                28,
+                Math.min(
+                    88,
+                    object.size *
+                    p.scale *
+                    1.7
+                )
+            );
+
+
+        ctx.globalAlpha =
+            Math.max(
+                .30,
+                Math.min(
+                    1,
+                    1450 /
+                    p.depth
+                )
+            );
+
+
+        /*
+           EMOJI
+        */
+
+        ctx.textAlign =
+            "center";
+
+
+        ctx.textBaseline =
+            "middle";
+
+
+        ctx.font =
+            `${size}px "Segoe UI Emoji"`;
+
+
+        ctx.shadowColor =
+            "#ffc400";
+
+
+        ctx.shadowBlur =
+            12;
+
+
+        ctx.fillText(
+
+            object.emoji,
+
+            p.x,
+
+            p.y
+
+        );
+
+
+        /*
+           MENSAJE
+        */
+
+        const fontSize =
+            Math.max(
+                11,
+                Math.min(
+                    20,
+                    17 *
+                    p.scale *
+                    1.45
+                )
+            );
+
+
+        ctx.font =
+            `700 ${fontSize}px Georgia`;
+
+
+        ctx.fillStyle =
+            "#fff0b3";
+
+
+        ctx.shadowColor =
+            "#000";
+
+
+        ctx.shadowBlur =
+            7;
+
+
+        ctx.fillText(
+
+            object.label,
+
+            p.x,
+
+            p.y +
+            size*.72
+
+        );
+
+    }
+
+
+    ctx.globalAlpha =
+        1;
+
+}
+
+
+/* =========================================================
+   BIG BANG: PARTÍCULAS
+========================================================= */
+
+let bangParticles = [];
+
+
+function createBangParticles(){
+
+    bangParticles = [];
+
+
+    for(
+        let i = 0;
+        i < 90;
+        i++
+    ){
 
         const angle =
-            Math.random() * Math.PI * 2;
+            random(
+                0,
+                TAU
+            );
 
-        const distance =
-            maxDistance *
-            (.35 + Math.random() * .75);
 
-        const x =
-            Math.cos(angle) * distance;
+        const speed =
+            random(
+                120,
+                650
+            );
 
-        const y =
-            Math.sin(angle) * distance;
 
-        particle.style.setProperty(
-            "--x",
-            x + "px"
-        );
+        bangParticles.push({
 
-        particle.style.setProperty(
-            "--y",
-            y + "px"
-        );
+            angle,
 
-        const size =
-            Math.random() * 5 + 2;
+            speed,
 
-        particle.style.width =
-            size + "px";
+            size:
+                random(
+                    1,
+                    4
+                ),
 
-        particle.style.height =
-            size + "px";
+            offset:
+                random(
+                    0,
+                    100
+                )
 
-        particle.style.animationDelay =
-            Math.random() * .25 + "s";
+        });
 
-        fragment.appendChild(particle);
     }
 
-    bangParticles.appendChild(fragment);
 }
+
+
+function drawBangParticles(
+    elapsed
+){
+
+    if(
+        elapsed > 2.3
+    ){
+        return;
+    }
+
+
+    ctx.save();
+
+
+    ctx.globalCompositeOperation =
+        "lighter";
+
+
+    for(
+        const particle
+        of bangParticles
+    ){
+
+        const distance =
+            particle.offset +
+            particle.speed *
+            elapsed;
+
+
+        const x =
+            CX +
+            Math.cos(
+                particle.angle
+            ) *
+            distance;
+
+
+        const y =
+            CY +
+            Math.sin(
+                particle.angle
+            ) *
+            distance;
+
+
+        ctx.globalAlpha =
+            Math.max(
+                0,
+                1 -
+                elapsed/2.3
+            );
+
+
+        ctx.fillStyle =
+            Math.random()>.3
+                ? "#ffd429"
+                : "#fff8c5";
+
+
+        ctx.beginPath();
+
+
+        ctx.arc(
+
+            x,
+            y,
+
+            particle.size,
+
+            0,
+            TAU
+
+        );
+
+
+        ctx.fill();
+
+    }
+
+
+    ctx.restore();
+
+}
+
+
+/* =========================================================
+   CÁMARA SUAVE
+========================================================= */
+
+function updateCamera(){
+
+    yaw +=
+        (
+            targetYaw -
+            yaw
+        ) *
+        .10;
+
+
+    pitch +=
+        (
+            targetPitch -
+            pitch
+        ) *
+        .10;
+
+
+    zoom +=
+        (
+            targetZoom -
+            zoom
+        ) *
+        .10;
+
+}
+
+
+/* =========================================================
+   ANIMACIÓN PRINCIPAL
+========================================================= */
+
+let previousFrame = 0;
+
+
+function render(
+    time
+){
+
+    /*
+       Límite aproximado 60 FPS.
+
+       Evita cálculos innecesarios.
+    */
+
+    if(
+        time -
+        previousFrame <
+        15
+    ){
+
+        requestAnimationFrame(
+            render
+        );
+
+        return;
+
+    }
+
+
+    previousFrame =
+        time;
+
+
+    if(
+        started &&
+        autoRotate &&
+        !dragging
+    ){
+
+        targetYaw +=
+            .00065;
+
+    }
+
+
+    updateCamera();
+
+
+    drawBackground(
+        time
+    );
+
+
+    drawGoldenCarpet(
+        time
+    );
+
+
+    drawBouquets();
+
+
+    drawObjects();
+
+
+    drawCentralSphere(
+        time
+    );
+
+
+    if(
+        started
+    ){
+
+        const elapsed =
+            (
+                time -
+                startTime
+            ) /
+            1000;
+
+
+        drawBangParticles(
+            elapsed
+        );
+
+
+        /*
+           CARTA FINAL
+        */
+
+        if(
+            elapsed >
+            31 &&
+            !letterOpened
+        ){
+
+            letterOpened =
+                true;
+
+
+            letter.classList.add(
+                "show"
+            );
+
+        }
+
+    }
+
+
+    requestAnimationFrame(
+        render
+    );
+
+}
+
+
+requestAnimationFrame(
+    render
+);
+
+
+/* =========================================================
+   ARRASTRAR 360°
+========================================================= */
+
+canvas.addEventListener(
+
+    "pointerdown",
+
+    function(event){
+
+        dragging =
+            true;
+
+
+        autoRotate =
+            false;
+
+
+        previousX =
+            event.clientX;
+
+
+        previousY =
+            event.clientY;
+
+
+        try{
+
+            canvas.setPointerCapture(
+                event.pointerId
+            );
+
+        }catch(error){}
+
+    }
+
+);
+
+
+canvas.addEventListener(
+
+    "pointermove",
+
+    function(event){
+
+        if(
+            !dragging
+        ){
+            return;
+        }
+
+
+        const dx =
+            event.clientX -
+            previousX;
+
+
+        const dy =
+            event.clientY -
+            previousY;
+
+
+        /*
+           NO LIMITAMOS YAW.
+
+           Por eso puedes dar
+           vueltas completas
+           infinitamente.
+        */
+
+        targetYaw -=
+            dx *
+            .006;
+
+
+        targetPitch +=
+            dy *
+            .003;
+
+
+        targetPitch =
+            Math.max(
+                -.55,
+                Math.min(
+                    .45,
+                    targetPitch
+                )
+            );
+
+
+        previousX =
+            event.clientX;
+
+
+        previousY =
+            event.clientY;
+
+    }
+
+);
+
+
+function stopDragging(){
+
+    dragging =
+        false;
+
+}
+
+
+canvas.addEventListener(
+    "pointerup",
+    stopDragging
+);
+
+
+canvas.addEventListener(
+    "pointercancel",
+    stopDragging
+);
+
+
+/* =========================================================
+   ZOOM RUEDA
+========================================================= */
+
+canvas.addEventListener(
+
+    "wheel",
+
+    function(event){
+
+        event.preventDefault();
+
+
+        autoRotate =
+            false;
+
+
+        targetZoom -=
+            event.deltaY *
+            .0006;
+
+
+        targetZoom =
+            Math.max(
+                .65,
+                Math.min(
+                    1.55,
+                    targetZoom
+                )
+            );
+
+    },
+
+    {
+        passive:false
+    }
+
+);
+
+
+/* =========================================================
+   PINCH ZOOM
+========================================================= */
+
+canvas.addEventListener(
+
+    "touchstart",
+
+    function(event){
+
+        if(
+            event.touches.length ===
+            2
+        ){
+
+            const a =
+                event.touches[0];
+
+            const b =
+                event.touches[1];
+
+
+            pinchDistance =
+                Math.hypot(
+
+                    a.clientX -
+                    b.clientX,
+
+                    a.clientY -
+                    b.clientY
+
+                );
+
+        }
+
+    },
+
+    {
+        passive:true
+    }
+
+);
+
+
+canvas.addEventListener(
+
+    "touchmove",
+
+    function(event){
+
+        if(
+            event.touches.length !==
+            2
+        ){
+            return;
+        }
+
+
+        const a =
+            event.touches[0];
+
+        const b =
+            event.touches[1];
+
+
+        const distance =
+            Math.hypot(
+
+                a.clientX -
+                b.clientX,
+
+                a.clientY -
+                b.clientY
+
+            );
+
+
+        if(
+            pinchDistance
+        ){
+
+            targetZoom +=
+                (
+                    distance -
+                    pinchDistance
+                ) *
+                .0018;
+
+
+            targetZoom =
+                Math.max(
+                    .65,
+                    Math.min(
+                        1.55,
+                        targetZoom
+                    )
+                );
+
+        }
+
+
+        pinchDistance =
+            distance;
+
+
+        autoRotate =
+            false;
+
+    },
+
+    {
+        passive:true
+    }
+
+);
+
+
+/* =========================================================
+   CORAZÓN FUGAZ
+========================================================= */
+
+function flyingHeart(){
+
+    const heart =
+        document.createElement(
+            "div"
+        );
+
+
+    heart.className =
+        "flyingHeart";
+
+
+    heart.textContent =
+        "💛";
+
+
+    document.body.appendChild(
+        heart
+    );
+
+
+    const animation =
+        heart.animate(
+
+            [
+
+                {
+
+                    transform:
+                        "translate(0,0) rotate(-20deg) scale(.6)",
+
+                    opacity:0
+
+                },
+
+                {
+
+                    opacity:1,
+
+                    offset:.15
+
+                },
+
+                {
+
+                    transform:
+                        `translate(${W+180}px,${H*.40}px) rotate(25deg) scale(1.3)`,
+
+                    opacity:0
+
+                }
+
+            ],
+
+            {
+
+                duration:4000,
+
+                easing:
+                    "cubic-bezier(.2,.7,.2,1)"
+
+            }
+
+        );
+
+
+    animation.onfinish =
+        ()=>heart.remove();
+
+}
+
+
+/* =========================================================
+   SORPRESAS
+========================================================= */
+
+function showSurprise(
+    html,
+    duration = 4800
+){
+
+    surprise.innerHTML =
+        html;
+
+
+    surprise
+        .getAnimations()
+        .forEach(
+            animation =>
+                animation.cancel()
+        );
+
+
+    surprise.animate(
+
+        [
+
+            {
+
+                opacity:0,
+
+                transform:
+                    "translate(-50%,-45%) scale(.82)"
+
+            },
+
+            {
+
+                opacity:1,
+
+                transform:
+                    "translate(-50%,-50%) scale(1)",
+
+                offset:.18
+
+            },
+
+            {
+
+                opacity:1,
+
+                transform:
+                    "translate(-50%,-50%) scale(1)",
+
+                offset:.76
+
+            },
+
+            {
+
+                opacity:0,
+
+                transform:
+                    "translate(-50%,-55%) scale(1.04)"
+
+            }
+
+        ],
+
+        {
+
+            duration,
+
+            easing:
+                "ease-out"
+
+        }
+
+    );
+
+}
+
+
+/* =========================================================
+   MÚSICA
+========================================================= */
+
+async function playMusic(){
+
+    try{
+
+        song.volume =
+            .65;
+
+
+        await song.play();
+
+
+        musicButton.textContent =
+            "❚❚ Bed Chem — Sabrina Carpenter";
+
+
+    }catch(error){
+
+        /*
+           Algunos navegadores bloquean
+           previews externos.
+
+           No rompe la página.
+        */
+
+        musicButton.textContent =
+            "▶ Bed Chem — Sabrina Carpenter";
+
+    }
+
+}
+
+
+musicButton.addEventListener(
+
+    "click",
+
+    async function(){
+
+        if(
+            song.paused
+        ){
+
+            try{
+
+                await song.play();
+
+
+                musicButton.textContent =
+                    "❚❚ Bed Chem — Sabrina Carpenter";
+
+
+            }catch(error){
+
+                /*
+                   Si el preview falla,
+                   abre la canción oficial
+                   en Spotify.
+                */
+
+                window.open(
+
+                    "https://open.spotify.com/search/Bed%20Chem%20Sabrina%20Carpenter",
+
+                    "_blank",
+
+                    "noopener,noreferrer"
+
+                );
+
+            }
+
+        }
+
+        else{
+
+            song.pause();
+
+
+            musicButton.textContent =
+                "▶ Bed Chem — Sabrina Carpenter";
+
+        }
+
+    }
+
+);
 
 
 /* =========================================================
    BOTÓN PRINCIPAL
 
-   ESTA ES LA PARTE IMPORTANTE.
-   No depende de audio, librerías ni Three.js.
+   ESTE ES EL BOTÓN QUE ANTES TE ESTABA FALLANDO.
 ========================================================= */
 
-function enterUniverse(){
+enterButton.addEventListener(
 
-    /* evitar doble clic */
-
-    enterBtn.disabled = true;
-
-    /* ocultar portada */
-
-    cover.classList.add("hide");
-
-    /* preparar explosión */
-
-    createBang();
-
-    bigbang.classList.add("active");
-
-
-    /* quitar portada completamente */
-
-    setTimeout(function(){
-
-        cover.style.display =
-            "none";
-
-    },800);
-
-
-    /* mostrar universo detrás del Big Bang */
-
-    setTimeout(function(){
-
-        universe.classList.add("show");
-
-    },900);
-
-
-    /* terminar explosión */
-
-    setTimeout(function(){
-
-        bigbang.classList.remove("active");
-
-        bigbang.style.display =
-            "none";
-
-    },2300);
-}
-
-
-/* CLICK NORMAL */
-
-enterBtn.onclick =
-    enterUniverse;
-
-
-/* SOPORTE TÁCTIL */
-
-enterBtn.addEventListener(
-    "touchend",
-    function(event){
-
-        event.preventDefault();
-
-        enterUniverse();
-
-    },
-    {passive:false}
-);
-
-
-/* =========================================================
-   MODALES DE OBJETOS
-========================================================= */
-
-const items =
-    document.querySelectorAll(
-        ".float-item[data-message]"
-    );
-
-items.forEach(function(item){
-
-    item.addEventListener(
-        "click",
-        function(){
-
-            modalEmoji.textContent =
-                item.dataset.emoji || "🌻";
-
-            modalTitle.textContent =
-                item.dataset.title || "Para ti";
-
-            modalText.textContent =
-                item.dataset.message || "";
-
-            modal.classList.add("open");
-        }
-    );
-
-});
-
-
-function hideModal(){
-
-    modal.classList.remove("open");
-
-}
-
-
-closeModal.addEventListener(
     "click",
-    hideModal
-);
 
-
-modal.addEventListener(
-    "click",
-    function(event){
-
-        if(event.target === modal){
-            hideModal();
-        }
-
-    }
-);
-
-
-/* =========================================================
-   SORPRESA DEL CORAZÓN
-========================================================= */
-
-heartItem.addEventListener(
-    "click",
-    function(event){
-
-        secret.classList.add("show");
-
-        loveExplosion(
-            event.clientX,
-            event.clientY
-        );
-
-    }
-);
-
-
-closeSecret.addEventListener(
-    "click",
     function(){
 
-        secret.classList.remove("show");
+        /*
+           Evita doble clic.
+        */
 
-    }
-);
+        if(
+            started
+        ){
+            return;
+        }
 
 
-/* =========================================================
-   EXPLOSIÓN DE CORAZONES Y FLORES
-========================================================= */
+        started =
+            true;
 
-function loveExplosion(x,y){
 
-    const emojis =
-        [
-            "💛",
-            "🌻",
-            "✨",
-            "🌼",
-            "💐",
-            "⭐",
-            "🐱"
-        ];
+        startTime =
+            performance.now();
 
-    for(let i = 0; i < 35; i++){
 
-        const element =
-            document.createElement("span");
+        /*
+           Quitamos portada.
+        */
 
-        element.className =
-            "love-particle";
-
-        element.textContent =
-            emojis[
-                Math.floor(
-                    Math.random() *
-                    emojis.length
-                )
-            ];
-
-        element.style.left =
-            x + "px";
-
-        element.style.top =
-            y + "px";
-
-        const angle =
-            Math.random() *
-            Math.PI *
-            2;
-
-        const distance =
-            100 +
-            Math.random() *
-            300;
-
-        const lx =
-            Math.cos(angle) *
-            distance;
-
-        const ly =
-            Math.sin(angle) *
-            distance;
-
-        element.style.setProperty(
-            "--lx",
-            lx + "px"
+        intro.classList.add(
+            "hidden"
         );
 
-        element.style.setProperty(
-            "--ly",
-            ly + "px"
+
+        /*
+           Big Bang.
+        */
+
+        bigBang.classList.add(
+            "active"
         );
 
-        element.style.setProperty(
-            "--rot",
-            (
-                Math.random() *
-                500 -
-                250
-            ) + "deg"
+
+        bigBangText.classList.add(
+            "active"
         );
 
-        document.body.appendChild(
-            element
-        );
+
+        createBangParticles();
+
+
+        /*
+           Mostramos HUD después
+           de la explosión.
+        */
 
         setTimeout(
-            function(){
 
-                element.remove();
+            ()=>{
+
+                hud.classList.add(
+                    "visible"
+                );
 
             },
-            2500
+
+            1500
+
         );
+
+
+        /*
+           Música.
+
+           Como ocurre directamente
+           después del clic del usuario,
+           tiene mayor posibilidad de
+           ser aceptada por Chrome.
+        */
+
+        playMusic();
+
+
+        /*
+           SORPRESA 1
+        */
+
+        setTimeout(
+
+            ()=>{
+
+                showSurprise(
+
+                    `
+                    <div style="font-size:52px">
+                        🌻 💐 🌻
+                    </div>
+
+                    <div style="margin-top:10px">
+
+                        Un universo lleno de
+                        flores amarillas
+
+                        <br>
+
+                        porque una sola
+                        no alcanzaba para ti.
+
+                        💛
+
+                    </div>
+                    `
+
+                );
+
+            },
+
+            7000
+
+        );
+
+
+        /*
+           CORAZÓN FUGAZ
+        */
+
+        setTimeout(
+
+            flyingHeart,
+
+            11500
+
+        );
+
+
+        /*
+           SORPRESA CHEF + INGENIERÍA
+        */
+
+        setTimeout(
+
+            ()=>{
+
+                showSurprise(
+
+                    `
+                    <div style="font-size:56px">
+                        👩‍🍳 💛 👷‍♀️
+                    </div>
+
+                    <div style="margin-top:12px">
+
+                        Puedes crear recetas,
+                        planos y mil proyectos…
+
+                        <br><br>
+
+                        pero mi favorito
+                        siempre será
+
+                        <span style="color:#fff3ae">
+                            el que construimos juntos.
+                        </span>
+
+                        ✨
+
+                    </div>
+                    `,
+
+                    5500
+
+                );
+
+            },
+
+            15000
+
+        );
+
+
+        /*
+           GATITOS
+        */
+
+        setTimeout(
+
+            ()=>{
+
+                showSurprise(
+
+                    `
+                    <div style="font-size:58px">
+                        🐱 💛 🐱
+                    </div>
+
+                    <div style="margin-top:10px">
+
+                        Hasta los gatitos
+                        de este universo
+
+                        <br>
+
+                        saben quién es
+                        mi persona favorita.
+
+                    </div>
+                    `
+
+                );
+
+            },
+
+            21500
+
+        );
+
+
+        /*
+           AHORA SÍ APARECE
+           "CUÁNTO TE AMO".
+
+           NO APARECE AL INICIO.
+        */
+
+        setTimeout(
+
+            ()=>{
+
+                showSurprise(
+
+                    `
+                    <div style="font-size:58px">
+                        🌻
+                    </div>
+
+                    <div style="
+                        margin-top:8px;
+                        font-size:1.3em;
+                        color:#ffe05b;
+                    ">
+
+                        ¿CUÁNTO TE AMO?
+
+                    </div>
+
+                    <div style="
+                        margin-top:10px;
+                        font-size:.72em;
+                        color:#fff4cc;
+                    ">
+
+                        Intenté llenar
+                        un universo entero…
+
+                        <br>
+
+                        y todavía me faltó espacio.
+
+                        ✨
+
+                    </div>
+                    `,
+
+                    5500
+
+                );
+
+            },
+
+            26500
+
+        );
+
+
+        setTimeout(
+
+            flyingHeart,
+
+            29000
+
+        );
+
     }
-}
 
-
-/* =========================================================
-   EFECTO DE PROFUNDIDAD CON MOUSE
-   MUY LIGERO, NO ES THREE.JS
-========================================================= */
-
-let targetX = 0;
-let targetY = 0;
-
-let currentX = 0;
-let currentY = 0;
-
-document.addEventListener(
-    "mousemove",
-    function(event){
-
-        targetX =
-            (
-                event.clientX /
-                window.innerWidth
-                -
-                .5
-            ) * 12;
-
-        targetY =
-            (
-                event.clientY /
-                window.innerHeight
-                -
-                .5
-            ) * 8;
-
-    }
 );
 
 
-function animateScene(){
-
-    currentX +=
-        (targetX-currentX) *
-        .04;
-
-    currentY +=
-        (targetY-currentY) *
-        .04;
-
-    const planet =
-        document.getElementById(
-            "planetWrap"
-        );
-
-    if(planet){
-
-        planet.style.marginLeft =
-            currentX + "px";
-
-        planet.style.marginTop =
-            currentY + "px";
-    }
-
-    requestAnimationFrame(
-        animateScene
-    );
-}
-
-
 /* =========================================================
-   INICIAR ELEMENTOS
+   CERRAR CARTA
 ========================================================= */
 
-createStars();
+closeLetter.addEventListener(
 
-createDust();
+    "click",
 
-animateScene();
-
-
-/* =========================================================
-   SEGURIDAD EXTRA
-
-   Si el navegador restaura la página desde caché,
-   aseguramos que la portada vuelva a estar activa.
-========================================================= */
-
-window.addEventListener(
-    "pageshow",
     function(){
 
-        enterBtn.disabled = false;
+        letter.classList.remove(
+            "show"
+        );
+
+
+        /*
+           Después de leer la carta
+           vuelve el giro automático.
+        */
+
+        autoRotate =
+            true;
 
     }
+
 );
 
+
+/* =========================================================
+   DOBLE CLIC = REACTIVAR GIRO AUTOMÁTICO
+========================================================= */
+
+canvas.addEventListener(
+
+    "dblclick",
+
+    function(){
+
+        autoRotate =
+            true;
+
+    }
+
+);
+
+
+/* =========================================================
+   SEGURIDAD:
+
+   Si la pestaña pierde foco,
+   detenemos música opcionalmente,
+   pero NO rompemos el universo.
+========================================================= */
+
+document.addEventListener(
+
+    "visibilitychange",
+
+    function(){
+
+        /*
+           No hacemos ningún cálculo
+           adicional aquí.
+           requestAnimationFrame ya se
+           pausa automáticamente en la
+           mayoría de navegadores.
+        */
+
+    }
+
+);
+
+
 </script>
+
 
 </body>
 </html>
